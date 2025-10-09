@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Harmony Website Test Page</title>
+
+    <!-- meta===> character info, editor, valu info -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="title" content="My Harmony School Test Website">
+    <meta name="keywords" content="harmony school, education, garland harmony innovation">
+    <meta name="description" content="Harmony Garland is a charter school offering education. 
+                                         It has middle and high school students. It provides a high-level education.">
+    
+    <!-- Title picture ==>  You can add a picture or icon your title-->
+    <link rel="icon" type="image/png" href="harmony icon2.jpg">
+</head>
+
+<body>
+    <!--CTRL+/ you can add comment ın your code -->
+
+    <!-- h1==>  Headings or title-->
+     <!-- Heead ==>  -->
+    <h1>Coding Club Starting</h1>
+
+    <!-- p ==> new paragraph -->
+    <p>Harmony School Innovation Test Page</p>
+    <h2>What is the coding Club</h2>
+
+
+    <!-- p==> paragraph / content with css -->
+    <p style="color: rgb(47, 0, 255); font-size: 4cqh; text-align: center;">
+    Coding Club Team</p>
+    
+    <ul>
+   <table  border="1">
+        <tr>
+        <th>We are create our first page on Coding Club, <br>this experiences very funny!
+        <br>We are Coding Club. We meet on Thursday at 4.00 pm
+       </th>
+        </tr>
+    </table>
+    </ul>
+
+
+    <p>We are create our first page on Coding Club, this experiences very funny!
+        We are Coding Club. We meet on Thursday at 4.00 pm</p>
+
+    <!-- br ==> line break -->
+    <br>
+
+    <!-- h2==>  2nd Headings or title -->
+    <h2><em>What is the HTML</em></h2>
+    <p>It means <b>HyperText Markup Language</b>. It is a markup language that creates the structure of websites.
+        This language creates the structure of all websites and applications.</p>
+    <br>
+
+    <p>For example, think of a house. In America, houses are made from wood.
+        In other countries, they use brick or concrete. Making a house skeleton with wood, brick, or
+        concrete is like HTML. It is like building the skeleton of the house.</p>
+
+    <!-- strong and b tags ==> bold words and  -->
+    <p>This structure is compatible with all browsers.
+        For example: <strong>Chrome, Safari, Firefox, Internet Explorer</strong>.
+        <br>
+        <strong>HTML</strong> is only used to create the <em>shape and structure</em> of websites and apps.
+        This language creates the <b>structure of all websites and applications</b>.
+        <br>
+
+        <!--hr ==> horizontel line -->
+        <hr>
+        <!-- em and u tags ==> em==> italik type u or ins ==> underline -->
+        <p> <em>Lorem</em> ipsum dolor sit amet consectetur adipisicing elit. <br> 
+            Doloribus culpa qui quis beatae illum sequi minima rerum <u> <strong>recusandae officiis repellat</strong></u>  similique voluptatum voluptatem, <br>
+             <ins><b>maxime exercitationem! </b></ins>Minus quasi doloribus molestias amet, consequuntur quos sit maiores, <br>
+             quo quidem aut, inventore laboriosam quaerat dolorem. Cupiditate deserunt est illo ex nobis dolorum suscipit aut.</p>
+             <br>
+
+            <!-- sup  and sub tags === sup ==> superscript sub ==> subscript -->
+            <p>
+                The formula for the area of ​​a <b>square</b> is X <sup>2</sup> <br>
+                The formula of <b>water</b> is H<sub>2</sub>O
+            </p> <br>
+
+            <!-- del==> delete,  small  and mark tags -->
+            <p><b>The Ball price</b> is <del><small>$80</small></del> == > $60</p>
+            <img src="/harmony icon2.jpg" alt="ball" width="50"> <br>
+            <mark><b>Last day is October 30</b></mark>
+            <hr>
+
+
+
+        <!-- Block Elements ==> we can create div, img, a, h1, p, hr tags
+                              it's start new paragraph and cover all line or space
+                              We can use for Title, Header, Photos
+                              a href="..." ==> website links
+                              target="_blank" ==> links will be open separate windows
+                              width""100" ==> You can change picture size
+                              alt="name" you can type specific name for picture
+                              /picturepath===> you can choose yhe picter from local folder-->
+
+        <body>
+            <div><strong>My School Home Page</strong></div>
+            <br> <br>
+            <img src="harmony-school-of-innovation-garland-garland-tx-3.jpg" width="100" alt="harmony">
+            <br>
+            <a href="https://www.harmonytx.org" target="_blank">Harmony School Home Page</a>
+            <br><br><br>
+            <img src="harmony academi.jpg" alt="academi" width="250">
+            <br>
+
+            <<a href="https://www.harmonytx.org/academics" target="_blank">Harmony Academi</a>
+                <hr>
+
+        </body>
+    <p><a href="https://launchpad.classlink.com/harmony" target="_blank">My Harmony Portal</a></p>
+
+    <img src="https://th.bing.com/th/id/OIP.tf0_CAUojBYpgGupue1tWwHaEK?w=281&h=180&c=7&r=0&o=7&dpr=1.3&pid=1.7&rm=3"
+        width="150" alt="school">
+    <img src="photo/html.png" alt="html png" width="100">
+
+    <p>Harmony's rigorous and relevant school model prepares the student for higher education,
+        emphasizing the importance of a growth-mindset and stance as a lifelong learner.
+        This is reinforced by a palpable culture for learning across our schools and
+        underpinned by a tight web of supportive relationships.
+
+        Harmony Curriculum is developed by a core team of Curriculum Directors and
+        teacher-teams of curriculum writers and is aligned to the Texas Essential Knowledge and Skills (TEKS)</p>
+    <br>
+    <hr>
+    <hr><br>
+
+    <!-- ul, li, ol and table shortcut -->
+    <ul>
+        <strong>Unordered List</strong>
+        <li>Students</li>
+        <li>Teachers</li>
+        <li>Education</li>
+    </ul>
+
+    <br>
+
+    <ol><strong>Ordered List</strong>
+        <li>12th Class</li>
+        <li>11th Class</li>
+        <li>10th Class</li>
+    </ol>
+
+    <!-- Table create===> <table></table> 
+         -->
+    <ul> 
+        <table border="1">
+            <tr> 
+                <th>Day</th>
+                <th>1. Class</th>
+                <th>2. Class</th>
+            </tr>
+            <tr>
+                <td>Monday</td>
+                <td>Math</td>
+                <td>EP</td>
+            </tr>
+            <tr>
+                <td>Tuesday</td>
+                <td>Art</td>
+                <td>Bio</td>
+            </tr>
+        </table>
+    </ul>
+
+
+    <br><br>
+    <!-- Inline Elements ==> we can create separate word with span in same line
+                         it's not cover all line or space -->
+
+    <!-- for examples -->
+    <span>Harmony</span>
+    <span>Public</span>
+    <span>School</span>
+    <br>
+    <div>Harmony</div>
+    <p>Harmony</p>
+    <h1>Harmony</h1>
+
+    <!-- Shift+Alt+F shortcut make your codes reformat-->
+
+    <body>
+        <h2>harmony</h2>
+    </body>
+
+</body>
+
+</html>
