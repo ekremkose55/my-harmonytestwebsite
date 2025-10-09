@@ -2,3 +2,8 @@
 *.zip
 *.exe
 node_modules/
+*.mov
+*.avi
+*.rar
+*.7z
+*.iso
