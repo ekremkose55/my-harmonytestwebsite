@@ -7,3 +7,4 @@ node_modules/
 *.rar
 *.7z
 *.iso
+*.DS_Store
