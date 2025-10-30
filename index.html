@@ -2,25 +2,142 @@
 <html lang="en">
 
 <head>
-    <title>Welcome to Harmony School Website 🌿</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Welcome to Harmony School Website 🌿</title>
 
-    <!-- meta===> character info, editor, valu info -->
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="title" content="My Harmony School Test Website">
-    <meta name="keywords" content="harmony school, education, garland harmony innovation">
-    <meta name="description" content="Harmony Garland is a charter school offering education. 
-                                         It has middle and high school students. It provides a high-level education.">
+  <!-- SEO -->
+  <meta name="title" content="My Harmony School Test Website" />
+  <meta name="description" content="Harmony Garland is a charter school offering education to middle and high school students." />
+  <meta name="keywords" content="harmony school, education, garland harmony innovation" />
 
-    <!-- Title picture ==>  You can add a picture or icon your title-->
-    <link rel="icon" type="image/png" href="harmony icon2.jpg">
+  <!-- Social (optional but nice) -->
+  <meta property="og:title" content="Harmony School — Test Website" />
+  <meta property="og:description" content="Learn more about our Coding Club and activities." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="harmony icon2.jpg" />
+  <meta name="theme-color" content="#2563eb" />
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="harmony icon2.jpg" />
+
+  <!-- Font (Google Fonts) -->
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+
+  <!-- Minimal CSS for a clean header/hero -->
+  <style>
+    :root{
+      --bg:#f3f6ff; --ink:#0f172a; --muted:#475569;
+      --primary:#2563eb; --primary-2:#1d4ed8; --card:#ffffff; --ring:rgba(0,0,0,.08);
+    }
+    *{box-sizing:border-box}
+    body{margin:0;font-family:Inter,system-ui,Segoe UI,Roboto,Arial,sans-serif;background:var(--bg);color:var(--ink)}
+    a{color:inherit;text-decoration:none}
+
+    .container{max-width:1100px;margin:0 auto;padding:0 20px}
+
+    /* Top header bar */
+    .site-header{
+      position:sticky; top:0; z-index:10;
+      backdrop-filter:saturate(1.2) blur(6px);
+      background:linear-gradient(180deg, rgba(255,255,255,.85), rgba(255,255,255,.70));
+      border-bottom:1px solid var(--ring);
+    }
+    .nav-wrap{
+      display:flex; align-items:center; justify-content:space-between;
+      padding:12px 0;
+    }
+    .brand{
+      display:flex; align-items:center; gap:12px; font-weight:800; letter-spacing:.2px;
+    }
+    .brand img{width:32px; height:32px; border-radius:8px; box-shadow:0 0 0 1px var(--ring)}
+    .brand span{font-size:18px}
+
+    nav ul{display:flex; gap:14px; list-style:none; margin:0; padding:0}
+    nav a{
+      padding:8px 12px; border-radius:10px; font-weight:600; color:var(--muted);
+      transition:.2s ease;
+    }
+    nav a:hover{background:#e8efff; color:var(--primary)}
+    nav a.primary{
+      color:#fff; background:var(--primary); box-shadow:0 6px 16px rgba(37,99,235,.25);
+    }
+    nav a.primary:hover{background:var(--primary-2)}
+
+    /* Hero */
+    .hero{
+      background: radial-gradient(1000px 600px at 50% -200px, #c7d2fe 0%, transparent 70%),
+                  linear-gradient(180deg,#eef4ff 0%, transparent 40%);
+      padding:56px 0 28px;
+    }
+    .hero-card{
+      background:var(--card);
+      border:1px solid var(--ring);
+      border-radius:20px;
+      box-shadow:0 20px 60px rgba(2,6,23,.10);
+      padding:28px;
+    }
+    .hero h1{font-size:38px; margin:0 0 8px}
+    .hero p{margin:0; color:var(--muted); font-size:18px}
+    .hero .actions{margin-top:22px; display:flex; gap:12px; flex-wrap:wrap}
+    .btn{display:inline-flex; align-items:center; gap:8px; padding:10px 16px; border-radius:12px; font-weight:700}
+    .btn.primary{background:var(--primary); color:#fff}
+    .btn.ghost{background:#edf2ff; color:var(--primary)}
+
+    @media (max-width:720px){
+      .hero h1{font-size:30px}
+      nav ul{gap:8px}
+    }
+  </style>
 </head>
 
 <body>
+
+      <!-- Header (title + nav) -->
+  <header class="site-header">
+    <div class="container nav-wrap">
+      <a class="brand" href="index.html">
+        <img src="/coding club logo3.jpeg" alt="Harmony icon">
+        <span>Welcome to My Website</span>
+      </a>
+      <nav aria-label="Main">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <!-- İstersen yeni sekmede açılsın: target="_blank" rel="noopener" -->
+          <li><a class="primary" href="Wilson-Coding-Club-Page.html">Wilson Coding Club Page</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+ <!-- Hero  -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero-card">
+        <h1>Coding Club Starting</h1>
+        <p>Explore our Coding Club, events, and resources for students.</p>
+        <div class="actions">
+          <a class="btn primary" href="Wilson-Coding-Club-Page.html">Go to Coding Club</a>
+          <a class="btn ghost" href="#content">See What's New</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+ <!-- Title picture ==>  You can add a picture or icon your title-->
+    <link rel="icon" type="image/png" href="harmony icon2.jpg">
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="Wilson-Coding-Club-Page.html" target="_blank" rel="noopener">Wilson Coding Club Page</a>
+      
+    </nav>
+
     <!--CTRL+/ you can add comment ın your code -->
     <!-- h1==>  Headings or title-->
     <!-- Heead ==>  -->
-    <h1>Coding Club Starting</h1>
+
 
     <!-- Codes Order: Shift + Alt + F -->
     <!-- p ==> new paragraph -->
@@ -28,7 +145,7 @@
     <h2>What is the coding Club</h2>
 <img src="/harmony icon2.jpg" width="200">
 <img src="/harmony academi.jpg" width="150">
-<img src="/ataturk.jpg" width="200">
+<img src="/Abraham_Lincoln.jpg" width="200">
 
     <!-- p==> paragraph / content with css -->
     <p style="color: rgb(97, 11, 189); font-size: 4cqh; text-align: center;">
@@ -129,7 +246,7 @@
                               alt="name" you can type specific name for picture
                               /picturepath===> you can choose yhe picter from local folder-->
 
-    <body>
+   
         <div><strong>My School Home Page</strong></div>
         <br> <br>
         <img src="harmony-school-of-innovation-garland-garland-tx-3.jpg" width="100" alt="harmony">
@@ -142,7 +259,7 @@
         <<a href="https://www.harmonytx.org/academics" target="_blank">Harmony Academi</a>
             <hr>
 
-    </body>
+  
     <p><a href="https://launchpad.classlink.com/harmony" target="_blank">My Harmony Portal</a></p>
 
     <img src="https://th.bing.com/th/id/OIP.tf0_CAUojBYpgGupue1tWwHaEK?w=281&h=180&c=7&r=0&o=7&dpr=1.3&pid=1.7&rm=3"
