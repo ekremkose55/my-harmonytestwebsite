@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Dwight — Tech Projects</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    /* Palette: deep navy → teal */
+    :root{
+      --bg1:#0b1220;
+      --bg2:#0d2330;
+      --accent:#10b3a3;  /* teal */
+      --accent-2:#38e8d3;
+      --ink:#e6f7f4;
+      --muted:#9ecfcc;
+      --card:#0f172a;
+      --radius:18px;
+      --shadow:0 18px 50px rgba(0,0,0,.35);
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;font-family:system-ui,Segoe UI,Roboto,Arial,sans-serif;color:var(--ink);
+      background:radial-gradient(1200px 800px at 10% -10%, #11324a 0%, transparent 60%),
+                 radial-gradient(900px 700px at 110% 10%, #0f3b3c 0%, transparent 58%),
+                 linear-gradient(180deg,var(--bg1),var(--bg2));
+      padding:18px; display:grid; place-items:center;
+    }
+
+    /* NAV */
+    .topnav{position:fixed;top:12px;right:18px;display:flex;gap:16px;font-size:16px}
+    .topnav a{color:var(--ink);text-decoration:none;font-weight:600;padding:8px 14px;border-radius:999px;
+      border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.06)}
+    .topnav a:hover{background:rgba(255,255,255,.12)}
+
+    .shell{width:min(920px,95vw);display:grid;gap:18px}
+    .hero{background:linear-gradient(180deg,#0f1a2d, var(--card)); border:1px solid rgba(255,255,255,.08);
+      border-radius:24px; padding:28px; box-shadow:var(--shadow); position:relative; overflow:hidden}
+    .hero::after{content:"";position:absolute;inset:auto -40% -40% auto;width:70%;height:70%;
+      background:radial-gradient(60% 60% at 60% 60%, rgba(16,179,163,.35), transparent 70%)}
+    h1{margin:0 0 8px;font-size:clamp(28px,4.2vw,46px)}
+    .tag{display:inline-block;padding:6px 12px;border-radius:999px;border:1px solid rgba(56,232,211,.4);
+      color:var(--accent-2); font-weight:700; letter-spacing:.4px}
+
+    .grid{display:grid;grid-template-columns:1.2fr .8fr;gap:18px}
+    @media (max-width:760px){.grid{grid-template-columns:1fr}}
+
+    .card{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);border-radius:var(--radius);padding:18px}
+    .card h2{margin:.2rem 0 0.6rem;font-size:22px}
+    .pill{display:inline-block;margin:6px 6px 0 0;padding:6px 10px;border-radius:999px;
+      background:rgba(16,179,163,.15);border:1px solid rgba(16,179,163,.35);color:var(--accent)}
+    .btns{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}
+    .btn{display:inline-flex;align-items:center;justify-content:center;height:42px;padding:0 14px;border-radius:12px;
+      background:linear-gradient(180deg,var(--accent),#0ea89a); color:#041417; font-weight:800;
+      border:0; text-decoration:none}
+    .btn.ghost{background:transparent;color:var(--accent);border:1px solid rgba(16,179,163,.45)}
+  </style>
+</head>
+<body>
+
+  <nav class="topnav">
+    <a href="index.html">Home</a>
+    <a href="Bao.html">Bao Page</a>
+    <a href="Chizaram.html">Chizaram Page</a>
+    <a href="Wilson-Coding-Club-Page.html">Wilson Page</a>
+    <a href="meryem.html">Meryem Page</a>
+  </nav>
+
+  <main class="shell">
+    <section class="hero">
+      <span class="tag">Dwight • Tech Projects</span>
+      <h1>Building useful things with clean code.</h1>
+      <p style="margin:8px 0 0;color:var(--muted)">
+        A minimal, performance-first collection of experiments: automation, sensors, and web tooling.
+      </p>
+      <div class="btns">
+        <a class="btn" href="#">View Latest Demo</a>
+        <a class="btn ghost" href="#">GitHub</a>
+      </div>
+    </section>
+
+    <section class="grid">
+      <div class="card">
+        <h2>Highlights</h2>
+        <ul style="margin:0 0 8px 18px;line-height:1.6">
+          <li>Raspberry Pi + Python GPIO dashboard</li>
+          <li>Fast API endpoint with caching (under 10ms)</li>
+          <li>Sensor data to CSV + live chart web app</li>
+        </ul>
+        <div>
+          <span class="pill">Python</span><span class="pill">FastAPI</span>
+          <span class="pill">GPIO</span><span class="pill">Docker</span><span class="pill">Tailwind</span>
+        </div>
+      </div>
+      <div class="card">
+        <h2>Next Up</h2>
+        <p style="margin:0;color:var(--muted)">
+          BLE beacons + local inference. Goal: offline attendance tracker with edge classification.
+        </p>
+      </div>
+    </section>
+  </main>
+
+</body>
+</html>
