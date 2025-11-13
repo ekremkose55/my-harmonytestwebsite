@@ -2,42 +2,255 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <title>Giovanni — Tech Projects</title>
+  <title>Giovanni — Dallas Trip</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <style>
-    :root{--bg1:#0b1220;--bg2:#0d2330;--accent:#10b3a3;--accent-2:#38e8d3;--ink:#e6f7f4;--muted:#9ecfcc;--card:#0f172a;--radius:18px;--shadow:0 18px 50px rgba(0,0,0,.35)}
+    :root{
+      --bg1:#050716;
+      --bg2:#081529;
+      --accent:#ff7a3c;
+      --accent-2:#ffcf5c;
+      --ink:#fefefe;
+      --muted:#c9d4ff;
+      --card:#0b1020;
+      --radius:18px;
+      --shadow:0 18px 50px rgba(0,0,0,.45)
+    }
     *{box-sizing:border-box}
     html,body{height:100%}
-    body{margin:0;font-family:system-ui,Segoe UI,Roboto,Arial,sans-serif;color:var(--ink);
-      background:radial-gradient(1200px 800px at 10% -10%, #11324a 0%, transparent 60%),
-                 radial-gradient(900px 700px at 110% 10%, #0f3b3c 0%, transparent 58%),
-                 linear-gradient(180deg,var(--bg1),var(--bg2));
-      padding:18px;display:grid;place-items:center}
-    .topnav{position:fixed;top:12px;right:18px;display:flex;gap:16px;font-size:16px}
-    .topnav a{color:var(--ink);text-decoration:none;font-weight:600;padding:8px 14px;border-radius:999px;
-      border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.06)}
-    .topnav a:hover{background:rgba(255,255,255,.12)}
-    .shell{width:min(920px,95vw);display:grid;gap:18px}
-    .hero{background:linear-gradient(180deg,#0f1a2d,var(--card));border:1px solid rgba(255,255,255,.08);
-      border-radius:24px;padding:28px;box-shadow:var(--shadow);position:relative;overflow:hidden}
-    .hero::after{content:"";position:absolute;inset:auto -40% -40% auto;width:70%;height:70%;
-      background:radial-gradient(60% 60% at 60% 60%, rgba(16,179,163,.35), transparent 70%)}
-    h1{margin:0 0 8px;font-size:clamp(28px,4.2vw,46px)}
-    .tag{display:inline-block;padding:6px 12px;border-radius:999px;border:1px solid rgba(56,232,211,.4);
-      color:var(--accent-2);font-weight:700;letter-spacing:.4px}
-    .grid{display:grid;grid-template-columns:1.2fr .8fr;gap:18px}
-    @media(max-width:760px){.grid{grid-template-columns:1fr}}
-    .card{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);border-radius:var(--radius);padding:18px}
-    .card h2{margin:.2rem 0 0.6rem;font-size:22px}
-    .pill{display:inline-block;margin:6px 6px 0 0;padding:6px 10px;border-radius:999px;
-      background:rgba(16,179,163,.15);border:1px solid rgba(16,179,163,.35);color:var(--accent)}
-    .btns{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}
-    .btn{display:inline-flex;align-items:center;justify-content:center;height:42px;padding:0 14px;border-radius:12px;
-      background:linear-gradient(180deg,var(--accent),#0ea89a);color:#041417;font-weight:800;border:0;text-decoration:none}
-    .btn.ghost{background:transparent;color:var(--accent);border:1px solid rgba(16,179,163,.45)}
+    body{
+      margin:0;
+      font-family:system-ui,Segoe UI,Roboto,Arial,sans-serif;
+      color:var(--ink);
+      background:
+        radial-gradient(1300px 900px at 10% -20%, #2c3a78 0%, transparent 60%),
+        radial-gradient(1200px 800px at 110% 10%, #ff7a3c33 0%, transparent 70%),
+        linear-gradient(180deg,var(--bg1),var(--bg2));
+      padding:18px;
+      display:grid;
+      place-items:center;
+    }
+
+    .topnav{
+      position:fixed;
+      top:12px;
+      right:18px;
+      display:flex;
+      gap:16px;
+      font-size:16px;
+      z-index:10;
+    }
+    .topnav a{
+      color:var(--ink);
+      text-decoration:none;
+      font-weight:600;
+      padding:8px 14px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.12);
+      background:rgba(6,16,40,.7);
+      backdrop-filter:blur(18px);
+    }
+    .topnav a:hover{
+      background:rgba(255,255,255,.16);
+    }
+
+    .shell{
+      width:min(980px,96vw);
+      display:grid;
+      gap:18px;
+      margin-top:40px;
+    }
+
+    /* HERO */
+    .hero{
+      background:linear-gradient(135deg,#151b3a 0%, #1b153a 40%, #341637 100%);
+      border:1px solid rgba(255,255,255,.12);
+      border-radius:24px;
+      padding:28px;
+      box-shadow:var(--shadow);
+      position:relative;
+      overflow:hidden;
+    }
+    .hero::after{
+      content:"";
+      position:absolute;
+      inset:auto -40% -40% auto;
+      width:70%;
+      height:70%;
+      background:
+        radial-gradient(60% 60% at 60% 60%, rgba(255,122,60,.55), transparent 70%),
+        radial-gradient(50% 50% at 20% 10%, rgba(255,207,92,.35), transparent 70%);
+      opacity:.9;
+    }
+    h1{
+      margin:0 0 8px;
+      font-size:clamp(30px,4.4vw,46px);
+    }
+    .tag{
+      display:inline-block;
+      padding:6px 12px;
+      border-radius:999px;
+      border:1px solid rgba(255,207,92,.6);
+      color:var(--accent-2);
+      font-weight:700;
+      letter-spacing:.4px;
+      background:rgba(4,9,32,.85);
+      backdrop-filter:blur(16px);
+    }
+    .hero-sub{
+      margin:10px 0 0;
+      color:var(--muted);
+      max-width:520px;
+      position:relative;
+      z-index:1;
+    }
+    .hero-badge-row{
+      margin-top:14px;
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      position:relative;
+      z-index:1;
+    }
+    .badge{
+      padding:6px 10px;
+      border-radius:999px;
+      font-size:13px;
+      border:1px solid rgba(255,255,255,.18);
+      background:rgba(6,16,40,.85);
+    }
+
+    .btns{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      margin-top:16px;
+      position:relative;
+      z-index:1;
+    }
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      height:44px;
+      padding:0 18px;
+      border-radius:999px;
+      background:linear-gradient(135deg,var(--accent),#ff995c);
+      color:#140a06;
+      font-weight:800;
+      border:0;
+      text-decoration:none;
+      box-shadow:0 12px 30px rgba(255,122,60,.45);
+    }
+    .btn.ghost{
+      background:transparent;
+      color:var(--accent-2);
+      border:1px solid rgba(255,207,92,.6);
+      box-shadow:none;
+    }
+    .btn span.small{
+      font-weight:500;
+      opacity:.9;
+      margin-left:6px;
+      font-size:13px;
+    }
+
+    .grid{
+      display:grid;
+      grid-template-columns:1.25fr .9fr;
+      gap:18px;
+    }
+    @media(max-width:820px){
+      .grid{grid-template-columns:1fr}
+    }
+
+    .card{
+      background:rgba(7,12,30,.92);
+      border:1px solid rgba(255,255,255,.12);
+      border-radius:var(--radius);
+      padding:18px;
+      box-shadow:0 10px 30px rgba(0,0,0,.35);
+    }
+    .card h2{
+      margin:.1rem 0 .6rem;
+      font-size:22px;
+    }
+    .pill{
+      display:inline-block;
+      margin:6px 6px 0 0;
+      padding:6px 10px;
+      border-radius:999px;
+      background:rgba(255,122,60,.08);
+      border:1px solid rgba(255,122,60,.55);
+      color:var(--accent-2);
+      font-size:13px;
+    }
+
+    .card ul{
+      margin:0 0 10px 20px;
+      padding:0;
+      line-height:1.6;
+      color:var(--muted);
+    }
+
+    .two-col{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:18px;
+    }
+    @media(max-width:680px){
+      .two-col{grid-template-columns:1fr}
+    }
+
+    .comment-list{
+      margin:10px 0 14px;
+      padding:0;
+      list-style:none;
+      color:var(--muted);
+      font-size:14px;
+    }
+    .comment-list li{
+      padding:8px 10px;
+      border-radius:10px;
+      background:rgba(255,255,255,.03);
+      border:1px solid rgba(255,255,255,.05);
+      margin-bottom:6px;
+    }
+    .comment-list strong{
+      color:var(--accent-2);
+      font-size:13px;
+    }
+
+    .form-row{
+      display:flex;
+      gap:10px;
+      margin-bottom:8px;
+      flex-wrap:wrap;
+    }
+    input, textarea{
+      font:inherit;
+      border-radius:10px;
+      border:1px solid rgba(255,255,255,.2);
+      background:rgba(3,8,25,.9);
+      color:var(--ink);
+      padding:8px 10px;
+      width:100%;
+    }
+    textarea{min-height:66px;resize:vertical;}
+    input::placeholder, textarea::placeholder{
+      color:#7e86b3;
+    }
+    .small-note{
+      font-size:12px;
+      color:var(--muted);
+      opacity:.9;
+      margin-top:4px;
+    }
   </style>
 </head>
 <body>
+
+  <!-- NAVIGATION -->
   <nav class="topnav">
     <a href="index.html">Home</a>
     <a href="Bao.html">Bao Page</a>
@@ -48,35 +261,129 @@
   </nav>
 
   <main class="shell">
+
+    <!-- HERO -->
     <section class="hero">
-      <span class="tag">Giovanni • Tech Projects</span>
-      <h1>Code + Design + Motion.</h1>
-      <p style="margin:8px 0 0;color:var(--muted)">Giovanni focuses on animations, UI motion, and fast frontend experiments.</p>
+      <span class="tag">Giovanni • Dallas Night Trip</span>
+      <h1>City Lights, Skyline Nights.</h1>
+      <p class="hero-sub">
+        Explore Dallas with Giovanni — from Reunion Tower views to Deep Ellum street art.
+        A colorful travel page for curious explorers.
+      </p>
+
+      <div class="hero-badge-row">
+        <span class="badge">Downtown</span>
+        <span class="badge">Deep Ellum</span>
+        <span class="badge">Bishop Arts</span>
+        <span class="badge">Night Photography</span>
+      </div>
+
       <div class="btns">
-        <a class="btn" href="#">See Motion Demo</a>
-        <a class="btn ghost" href="#">GitHub</a>
+        <a class="btn" href="#register">Register for the Trip <span class="small">(form)</span></a>
+        <a class="btn ghost" href="#places">View Places</a>
       </div>
     </section>
 
-    <section class="grid">
+    <!-- FIRST ROW -->
+    <section class="grid" id="places">
       <div class="card">
-        <h2>Highlights</h2>
-        <ul style="margin:0 0 8px 18px;line-height:1.6">
-          <li>Framer Motion micro-animations</li>
-          <li>Animated SVG menu transitions</li>
-          <li>3D button hover deformation</li>
+        <h2>Places to Visit in Dallas</h2>
+        <ul>
+          <li><strong>Reunion Tower</strong> — 360° skyline view.</li>
+          <li><strong>Klyde Warren Park</strong> — food trucks & city greenery.</li>
+          <li><strong>Dallas Museum of Art</strong> — free museum with modern pieces.</li>
+          <li><strong>Deep Ellum</strong> — murals, neon lights, live music.</li>
+          <li><strong>Dallas Arboretum</strong> — lakeside gardens & peaceful walks.</li>
         </ul>
         <div>
-          <span class="pill">HTML</span><span class="pill">CSS</span>
-          <span class="pill">GSAP</span><span class="pill">Framer</span><span class="pill">SVG</span>
+          <span class="pill">Skyline</span>
+          <span class="pill">Museums</span>
+          <span class="pill">Street Art</span>
+          <span class="pill">Parks</span>
         </div>
       </div>
 
       <div class="card">
-        <h2>Next Up</h2>
-        <p style="margin:0;color:var(--muted)">WebGL: spinning 3D card flip with depth lighting.</p>
+        <h2>Trip Info</h2>
+        <ul>
+          <li>Meeting Point: Downtown Dallas (DART Station)</li>
+          <li>Time: 5:30 PM – 10:00 PM</li>
+          <li>Recommended: comfortable shoes & water</li>
+        </ul>
       </div>
     </section>
+
+    <!-- SECOND ROW -->
+    <section class="two-col">
+      <div class="card">
+        <h2>Places I’ve Visited</h2>
+        <ul>
+          <li><strong>Margaret Hunt Hill Bridge</strong> sunset views.</li>
+          <li><strong>Bishop Arts District</strong> cafes & desserts.</li>
+          <li><strong>Reunion Tower</strong> night skyline photos.</li>
+          <li><strong>Victory Park</strong> city lights after events.</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h2>Recommended Spots</h2>
+        <ul>
+          <li><strong>Pecan Lodge</strong> — BBQ in Deep Ellum.</li>
+          <li><strong>Mi Cocina</strong> — Tex-Mex by the park.</li>
+          <li><strong>Perot Museum</strong> — science & dinosaurs.</li>
+          <li><strong>White Rock Lake</strong> — perfect for biking.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- REGISTER + COMMENTS -->
+    <section class="two-col" id="register">
+      <div class="card">
+        <h2>Trip Registration</h2>
+        <form>
+          <div class="form-row">
+            <input type="text" name="name" placeholder="Full name" />
+          </div>
+          <div class="form-row">
+            <input type="email" name="email" placeholder="Email address" />
+            <input type="text" name="grade" placeholder="Grade / Class" />
+          </div>
+          <div class="form-row">
+            <textarea name="note" placeholder="Any notes or questions?"></textarea>
+          </div>
+          <button type="submit" class="btn">Submit</button>
+          <p class="small-note">
+            This form is a front-end example. To collect submissions,
+            connect to Google Forms or a backend service.
+          </p>
+        </form>
+      </div>
+
+      <div class="card">
+        <h2>Comments & Memories</h2>
+
+        <ul class="comment-list">
+          <li><strong>Hazel:</strong> “Deep Ellum murals were amazing!”</li>
+          <li><strong>Marco:</strong> “Reunion Tower at sunset felt magical.”</li>
+          <li><strong>Aisha:</strong> “Klyde Warren Park food trucks are great!”</li>
+        </ul>
+
+        <form>
+          <div class="form-row">
+            <input type="text" placeholder="Your name" />
+          </div>
+          <div class="form-row">
+            <textarea placeholder="Write a comment..."></textarea>
+          </div>
+          <button type="submit" class="btn ghost">Add Comment</button>
+          <p class="small-note">
+            This comment box is visual only — saving requires JavaScript.
+          </p>
+        </form>
+      </div>
+    </section>
+
   </main>
 </body>
 </html>
+
