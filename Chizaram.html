@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Chizaram — Creative Lab</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    /* Palette: royal purple → magenta with gold accents */
+    :root{
+      --bg1:#2b115a; --bg2:#4b1b7a;
+      --grad1:#b832f5; --grad2:#ff6fb1;
+      --gold:#ffd166; --ink:#fffaf6; --muted:#f3dff8;
+      --card:#3a176b; --radius:22px; --shadow:0 22px 60px rgba(0,0,0,.35);
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;font-family:system-ui,Segoe UI,Roboto,Arial,sans-serif;color:var(--ink);
+      background:
+        radial-gradient(900px 700px at 15% -10%, rgba(255,111,177,.35), transparent 60%),
+        linear-gradient(180deg,var(--bg1),var(--bg2));
+      padding:18px; display:grid; place-items:center;
+    }
+
+    /* NAV */
+    .topnav{position:fixed;top:12px;left:50%;transform:translateX(-50%);
+      display:flex;gap:14px;padding:6px 10px;background:rgba(255,255,255,.06);
+      border:1px solid rgba(255,255,255,.14);border-radius:999px;backdrop-filter:blur(10px)}
+    .topnav a{color:var(--ink);text-decoration:none;font-weight:700;padding:8px 12px;border-radius:999px}
+    .topnav a:hover{background:rgba(255,255,255,.12)}
+
+    .wrap{width:min(1000px,96vw);display:grid;gap:18px}
+    .hero{border-radius:28px;overflow:hidden;box-shadow:var(--shadow);position:relative}
+    .hero .layer{
+      background:linear-gradient(120deg,var(--grad1),var(--grad2));
+      padding:34px;border-bottom:1px solid rgba(255,255,255,.18)
+    }
+    h1{margin:0 0 6px;font-size:clamp(30px,4.8vw,52px)}
+    .subtitle{margin:0;color:var(--muted);font-size:clamp(14px,2.4vw,20px)}
+    .gold{color:var(--gold)}
+
+    .grid{display:grid;grid-template-columns:2fr 1fr;gap:18px}
+    @media (max-width:820px){.grid{grid-template-columns:1fr}}
+
+    .card{background:var(--card);border:1px solid rgba(255,255,255,.14);border-radius:var(--radius);padding:18px}
+    .card h2{margin:.3rem 0 .6rem;font-size:22px}
+
+    .list{display:grid;gap:10px;margin-top:8px}
+    .item{display:flex;gap:12px;align-items:flex-start}
+    .dot{width:10px;height:10px;border-radius:999px;background:var(--gold);margin-top:6px}
+
+    .btns{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}
+    .btn{display:inline-flex;align-items:center;justify-content:center;height:44px;padding:0 16px;border-radius:12px;
+      text-decoration:none;font-weight:800;border:0;color:#3a176b;background:var(--gold)}
+    .btn.ghost{background:transparent;color:var(--ink);border:1px solid rgba(255,255,255,.4)}
+  </style>
+</head>
+<body>
+
+  <nav class="topnav">
+    <a href="index.html">Home</a>
+    <a href="Wilson-Coding-Club-Page.html">Wilson Page</a>
+    <a href="meryem.html">Meryem Page</a>
+    <a href="Bao.html">Bao Page</a>
+    <a href="Dwight.html">Dwight Page</a>
+  </nav>
+
+  <main class="wrap">
+    <section class="hero">
+      <div class="layer">
+        <h1>Chizaram <span class="gold">Creative Lab</span></h1>
+        <p class="subtitle">Design • Storytelling • Community projects — bold colors, clear messages.</p>
+        <div class="btns">
+          <a class="btn" href="#">See Poster Gallery</a>
+          <a class="btn ghost" href="#">Contact</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="grid">
+      <div class="card">
+        <h2>Recent Works</h2>
+        <div class="list">
+          <div class="item"><div class="dot"></div><div>
+            <strong>“Read. Code. Create.”</strong> — hallway poster series mixing bold type with STEM icons.
+          </div></div>
+          <div class="item"><div class="dot"></div><div>
+            <strong>Community Garden Flyers</strong> — bilingual print & social cards highlighting weekly harvests.
+          </div></div>
+          <div class="item"><div class="dot"></div><div>
+            <strong>Event Branding</strong> — palette, logo, and digital banners for school showcase.
+          </div></div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>Focus</h2>
+        <p class="subtitle" style="margin:0 0 10px">Color systems, accessible typography, and purposeful layouts.</p>
+        <ul style="margin:0 0 0 18px;line-height:1.6">
+          <li>Figma component libraries</li>
+          <li>Poster design & print setup</li>
+          <li>Social media cut-downs</li>
+        </ul>
+      </div>
+    </section>
+  </main>
+
+</body>
+</html>

@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Bao's Story</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    :root{
+      --bg:#e6f4e6;         /* matcha pastel */
+      --card:#7fb37f;       /* muted green tea */
+      --text:#ffffff;
+      --muted:#dcf2dc;
+      --shadow:0 18px 50px rgba(60,105,60,.28);
+      --radius:20px;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+      background:linear-gradient(180deg,#d4ebd4 0%, #e6f4e6 100%);
+      display:grid;place-items:center;padding:16px;
+    }
+
+    /* NAV */
+    .topnav{
+      position:fixed; top:12px; right:20px;
+      display:flex; gap:22px; font-size:18px;
+    }
+    .topnav a{
+      color:#fff; text-decoration:none; font-weight:600;
+      padding:8px 16px; border-radius:999px;
+      background:rgba(255,255,255,.18);
+      border:1px solid rgba(255,255,255,.22);
+      transition:background .2s, transform .08s;
+    }
+    .topnav a:hover{ background:rgba(255,255,255,.28); transform:translateY(-1px) }
+
+    .card{
+      width:min(720px,95vw);
+      background:var(--card); color:var(--text);
+      border-radius:var(--radius); box-shadow:var(--shadow);
+      padding:clamp(22px,4vw,38px); position:relative; overflow:hidden;
+    }
+    .card::before{
+      content:""; position:absolute; inset:-60% -10% auto -10%; height:60%;
+      background:radial-gradient(70% 80% at 50% 100%,rgba(255,255,255,.25),rgba(255,255,255,0));
+    }
+
+    h1{margin:0 0 12px;font-size:clamp(30px,4.4vw,46px);text-align:center}
+    p{margin:0 0 14px;line-height:1.6;text-align:center;font-size:clamp(15px,2vw,20px)}
+    .actions{display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:12px; width:min(520px,100%); margin:24px auto 0}
+    a.btn{
+      display:inline-flex; align-items:center; justify-content:center; height:46px; padding:0 14px;
+      border-radius:999px; background:rgba(255,255,255,.18); color:#fff; text-decoration:none; font-weight:700;
+      border:1px solid rgba(255,255,255,.22); transition:background .2s, transform .08s;
+    }
+    a.btn:hover{ background:rgba(255,255,255,.26); transform:translateY(-1px) }
+  </style>
+</head>
+<body>
+
+  <nav class="topnav">
+    <a href="index.html">Home</a>
+    <a href="Chizaram.html">Chizaram Page</a>
+    <a href="Dwight.html">Dwight Page</a>
+    <a href="meryem.html">Meryem Page</a>
+    <a href="coding-club.html">Wilson Page</a>
+  </nav>
+
+  <main class="card">
+    <h1>Bao’s Story</h1>
+
+    <p>
+      Bamboo gently bends in the wind, and does not break.
+      In the quiet tea gardens of the Far East, there is calmness,
+      warm matcha tea in small cups, sakura petals drifting like snow.
+    </p>
+
+    <div class="actions">
+      <a class="btn" href="index.html">Back to Home</a>
+      <a class="btn" href="meryem.html">Go to Meryem Page</a>
+    </div>
+  </main>
+
+</body>
+</html>

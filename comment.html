@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Comment — Coding Club</title>
+  <style>
+    body{margin:0;font-family:system-ui,Segoe UI,Roboto,Arial,sans-serif;background:#eef;display:grid;place-items:start;min-height:100vh}
+    .shell{max-width:920px;width:100%;margin:32px auto;padding:0 16px}
+    .card{background:#fff;border:1px solid #e5e7eb;border-radius:14px;box-shadow:0 12px 30px rgba(0,0,0,.12);padding:18px}
+    h1{margin:0 0 10px} p{margin:0 0 12px;color:#334}
+    label{display:block;font-weight:600;margin:12px 0 6px}
+    input,textarea{width:100%;padding:10px 12px;border:1px solid #cbd5e1; border-radius:10px; font-size:15px; background:#f9fbff}
+    textarea{min-height:120px; resize:vertical}
+    .row{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}
+    button,.btn{padding:10px 16px;border:none;border-radius:999px;background:#2563eb;color:#fff;font-weight:700;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center}
+    .ghost{background:#e5e7eb;color:#111}
+    .hint{font-size:12px;color:#667}
+    ul{list-style:none;margin:0;padding:0}
+    li{padding:12px;border-bottom:1px solid #edf2f7}
+    li:last-child{border-bottom:none}
+    .meta{color:#667;font-size:12px}
+    .tag{display:inline-block;background:#2563eb11;color:#2563eb;border:1px solid #2563eb33; padding:2px 8px;border-radius:999px;font-size:12px}
+    header.top{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}
+  </style>
+</head>
+<body>
+  <div class="shell">
+    <header class="top">
+      <h1>Comments</h1>
+      <div class="row">
+        <a class="btn ghost" href="login.html" target="_blank" rel="noopener">Home</a>
+        <button id="clear" class="ghost">Clear All</button>
+      </div>
+    </header>
+
+    <!-- form -->
+    <section class="card" aria-label="Leave a comment">
+      <p>Write your comment and click <b>Save</b>. Your comment will be stored in your browser and shown below.</p>
+      <form id="commentForm">
+        <label for="name">Name (optional)</label>
+        <input id="name" name="name" placeholder="Your name">
+
+        <label for="comment">Comment</label>
+        <textarea id="comment" name="comment" placeholder="Your thoughts..."></textarea>
+        <div class="hint">Note: Comments are stored locally using <code>localStorage</code>.</div>
+
+        <div class="row">
+          <button type="submit" id="saveBtn">Save</button>
+          <button type="reset" class="ghost">Reset</button>
+        </div>
+      </form>
+    </section>
+
+    <!-- list -->
+    <section class="card" aria-label="Saved comments" style="margin-top:16px">
+      <h2>Saved Comments <span id="count" class="tag">0</span></h2>
+      <ul id="list"><li class="hint">No comments yet.</li></ul>
+    </section>
+  </div>
+
+  <script>
+    const KEY = 'codingClubComments';
+    const form = document.getElementById('commentForm');
+    const listEl = document.getElementById('list');
+    const countEl = document.getElementById('count');
+    const clearBtn = document.getElementById('clear');
+
+    function load(){
+      try { return JSON.parse(localStorage.getItem(KEY) || '[]'); }
+      catch { return []; }
+    }
+    function save(items){
+      localStorage.setItem(KEY, JSON.stringify(items));
+    }
+    function escapeHtml(s){
+      return s.replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+    }
+
+    function render(){
+      const items = load();
+      countEl.textContent = items.length;
+      listEl.innerHTML = '';
+
+      if(items.length === 0){
+        listEl.innerHTML = '<li class="hint">No comments yet.</li>';
+        return;
+      }
+      for(const it of items){
+        const li = document.createElement('li');
+        const date = new Date(it.ts);
+        li.innerHTML = `
+          <strong>${escapeHtml(it.name)}</strong><br>
+          ${escapeHtml(it.text)}<br>
+          <span class="meta">${date.toLocaleString()}</span>
+        `;
+        listEl.appendChild(li);
+      }
+    }
+
+    form.addEventListener('submit', (e)=>{
+      e.preventDefault();
+      const name = document.getElementById('name').value.trim() || 'Anonymous';
+      const text = document.getElementById('comment').value.trim();
+      if(!text){ alert('Please write a comment.'); return; }
+
+      const items = load();
+      items.unshift({ id: Date.now(), name, text, ts: new Date().toISOString() });
+      save(items);
+
+      form.reset();
+      render();
+    });
+
+    clearBtn.addEventListener('click', ()=>{
+      if(confirm('Clear all comments?')){
+        localStorage.removeItem(KEY);
+        render();
+      }
+    });
+
+    render();
+  </script>
+</body>
+</html>
