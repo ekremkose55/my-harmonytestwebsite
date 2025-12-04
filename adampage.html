@@ -1,0 +1,934 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>My Travel World</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    /* Palette: royal purple → magenta with gold accents */
+    :root{
+      --bg1:#2b115a; --bg2:#4b1b7a;
+      --grad1:#b832f5; --grad2:#ff6fb1;
+      --gold:#ffd166; --ink:#fffaf6; --muted:#f3dff8;
+      --card:#3a176b; --radius:22px; --shadow:0 22px 60px rgba(0,0,0,.35);
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family:system-ui,Segoe UI,Roboto,Arial,sans-serif;
+      color:var(--ink);
+      background:
+        radial-gradient(900px 700px at 15% -10%, rgba(255,111,177,.35), transparent 60%),
+        linear-gradient(180deg,var(--bg1),var(--bg2));
+      padding:18px;
+      display:grid;
+      place-items:center;
+    }
+
+    /* NAV */
+    .topnav{
+      position:fixed;
+      top:12px;left:50%;
+      transform:translateX(-50%);
+      display:flex;
+      flex-wrap:wrap;
+      gap:14px;
+      padding:6px 10px;
+      background:rgba(255,255,255,.06);
+      border:1px solid rgba(255,255,255,.14);
+      border-radius:999px;
+      backdrop-filter:blur(10px);
+      z-index:10;
+    }
+    .topnav a{
+      color:var(--ink);
+      text-decoration:none;
+      font-weight:700;
+      padding:8px 12px;
+      border-radius:999px;
+      font-size:14px;
+    }
+    .topnav a:hover{background:rgba(255,255,255,.12)}
+    .topnav a.active{background:rgba(255,255,255,.20)}
+
+    .wrap{
+      width:min(1100px,96vw);
+      display:grid;
+      gap:18px;
+      margin-top:40px;
+    }
+
+    /* HERO */
+    .hero{
+      border-radius:28px;
+      overflow:hidden;
+      box-shadow:var(--shadow);
+    }
+    .hero-layer{
+      background:linear-gradient(120deg,var(--grad1),var(--grad2));
+      padding:32px 24px 26px;
+      border-bottom:1px solid rgba(255,255,255,.18);
+    }
+    h1{
+      margin:0 0 8px;
+      font-size:clamp(30px,4.4vw,48px);
+    }
+    .subtitle{
+      margin:0;
+      color:var(--muted);
+      font-size:clamp(14px,2.2vw,18px);
+    }
+    .gold{color:var(--gold)}
+
+    .countries{
+      background:var(--card);
+      border:1px solid rgba(255,255,255,.18);
+      border-radius:0 0 28px 28px;
+      padding:18px 18px 22px;
+    }
+    .countries-header p{
+      margin:4px 0 0;
+      font-size:13px;
+      color:var(--muted);
+    }
+
+    .legend{
+      margin-top:8px;
+      font-size:12px;
+      color:var(--muted);
+    }
+
+    .country-grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+      gap:16px;
+      margin-top:16px;
+    }
+
+    .country-card{
+      background:rgba(0,0,0,.16);
+      border-radius:var(--radius);
+      border:1px solid rgba(255,255,255,.18);
+      padding:12px 14px 14px;
+      font-size:13px;
+    }
+    .country-card h2{
+      margin:0 0 6px;
+      font-size:16px;
+    }
+
+    .country-photo{
+      width:100%;
+      max-width:230px;
+      border-radius:14px;
+      margin:6px 0;
+      display:block;
+    }
+
+    .country-note{
+      margin:4px 0 10px;
+      font-size:12px;
+      color:var(--muted);
+    }
+
+    .city-select{
+      width:100%;
+      margin-top:4px;
+      padding:6px 8px;
+      border-radius:10px;
+      border:1px solid rgba(255,255,255,.45);
+      background:rgba(0,0,0,.25);
+      color:var(--ink);
+      font-size:12px;
+    }
+
+    .city-panel{
+      display:none;
+      margin-top:8px;
+      padding:8px 8px 10px;
+      border-radius:12px;
+      background:rgba(0,0,0,.25);
+      border:1px solid rgba(255,255,255,.25);
+      font-size:12px;
+    }
+    .city-panel h3{
+      margin:0 0 4px;
+      font-size:13px;
+    }
+    .city-photo{
+      width:100%;
+      max-width:210px;
+      border-radius:12px;
+      margin:4px 0;
+      display:block;
+    }
+    .city-note{
+      margin:4px 0 0;
+      font-size:12px;
+      color:var(--muted);
+    }
+
+    @media (max-width:720px){
+      .hero-layer{padding:26px 18px 20px}
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="topnav">
+    <a href="index.html">Home</a>
+    <a href="adampage.html">Adam Page</a>
+    <a href="bao.html">Bao Page</a>
+    <a href="chizaram.html">Chizaram Page</a>
+    <a href="dwight.html">Dwight Page</a>
+    <a href="Giovanni.html">Giovanni Page</a>
+    <a href="Jonah.html">Jonah Page</a>
+    <a href="meryem.html">Meryem Page</a>
+    <a href="Wilson-Coding-Club-Page.html">Wilson Page</a>
+    <a href="my-travel-world.html" class="active">Travel</a>
+  </nav>
+
+  <main class="wrap">
+    <section class="hero">
+      <div class="hero-layer">
+        <h1>My <span class="gold">Travel World</span></h1>
+        <p class="subtitle">
+          Countries and cities I have visited, with small notes and memories attached to each place.
+        </p>
+        <div class="legend">
+          <strong>Legend idea:</strong> You can use the notes for things like  
+          <em>year visited, who you were with, favorite food, or a short memory.</em>
+        </div>
+      </div>
+
+      <div class="countries">
+        <div class="countries-header">
+          <strong>Visited Countries & City Selector</strong>
+          <p>Select a city from each dropdown to see its photo area and memory note.</p>
+        </div>
+
+        <div class="country-grid">
+
+          <!-- CANADA -->
+          <div class="country-card">
+            <h2>Canada</h2>
+            <!-- Add your own country photo -->
+            <img class="country-photo" src="niagara-falls.jpg" alt="Canada photo placeholder">
+            <p class="country-note">
+              <!-- Write your country memory here, for example: -->
+              Quiet streets, cold winters, and friendly people – a mix of French and English culture.
+            </p>
+
+            <label>
+              Cities in Canada:
+              <select class="city-select" data-country="canada">
+                <option value="">Select a city…</option>
+                <option value="quebec">Québec City</option>
+                <option value="toronto">Toronto</option>
+                <option value="ottawa">Ottawa</option>
+                <option value="montreal">Montreal</option>
+                <option value="kitchener">Kitchener</option>
+              </select>
+            </label>
+
+            <div class="city-panel" data-country="canada" data-city="quebec">
+              <h3>Québec City</h3>
+              <img class="city-photo" src="" alt="Québec City photo">
+              <p class="city-note">
+                Old town streets, stone houses, and a European feeling in North America.
+              </p>
+            </div>
+            <div class="city-panel" data-country="canada" data-city="toronto">
+              <h3>Toronto</h3>
+              <img class="city-photo" src="travels/toronto.jpg" alt="Toronto photo">
+              <p class="city-note">
+                CN Tower, multicultural neighborhoods, and long walks through downtown.
+              </p>
+            </div>
+            <div class="city-panel" data-country="canada" data-city="ottawa">
+              <h3>Ottawa</h3>
+              <img class="city-photo" src="" alt="Ottawa photo">
+              <p class="city-note">
+                Government buildings, calm riverside views, and a quiet capital atmosphere.
+              </p>
+            </div>
+            <div class="city-panel" data-country="canada" data-city="montreal">
+              <h3>Montreal</h3>
+              <img class="city-photo" src="" alt="Montreal photo">
+              <p class="city-note">
+                French cafés, street art, and a mix of old and modern city life.
+              </p>
+            </div>
+            <div class="city-panel" data-country="canada" data-city="kitchener">
+              <h3>Kitchener</h3>
+              <img class="city-photo" src="" alt="Kitchener photo">
+              <p class="city-note">
+                Smaller city, slower pace – good for walks and simple daily life.
+              </p>
+            </div>
+          </div>
+
+          <!-- SENEGAL -->
+          <div class="country-card">
+            <h2>Senegal</h2>
+            <img class="country-photo" src="" alt="Senegal photo">
+            <p class="country-note">
+              Atlantic coast, warm weather, and strong West African culture.
+            </p>
+
+            <label>
+              Cities in Senegal:
+              <select class="city-select" data-country="senegal">
+                <option value="">Select a city…</option>
+                <option value="dakar">Dakar</option>
+              </select>
+            </label>
+
+            <div class="city-panel" data-country="senegal" data-city="dakar">
+              <h3>Dakar</h3>
+              <img class="city-photo" src="" alt="Dakar photo">
+              <p class="city-note">
+                Ocean breeze, busy streets, and colorful markets by the sea.
+              </p>
+            </div>
+          </div>
+
+          <!-- MALI -->
+          <div class="country-card">
+            <h2>Mali</h2>
+            <img class="country-photo" src="" alt="Mali photo">
+            <p class="country-note">
+              Deep history, desert routes, and unforgettable cultural stories.
+            </p>
+
+            <label>
+              Cities in Mali:
+              <select class="city-select" data-country="mali">
+                <option value="">Select a city…</option>
+                <option value="timbuktu">Timbuktu</option>
+                <option value="bamako">Bamako</option>
+              </select>
+            </label>
+
+            <div class="city-panel" data-country="mali" data-city="timbuktu">
+              <h3>Timbuktu</h3>
+              <img class="city-photo" src="" alt="Timbuktu photo">
+              <p class="city-note">
+                A legendary name – desert, history, and the feeling of being far from everywhere.
+              </p>
+            </div>
+            <div class="city-panel" data-country="mali" data-city="bamako">
+              <h3>Bamako</h3>
+              <img class="city-photo" src="" alt="Bamako photo">
+              <p class="city-note">
+                Capital city energy mixed with local music, markets, and daily life.
+              </p>
+            </div>
+          </div>
+
+          <!-- MOROCCO -->
+          <div class="country-card">
+            <h2>Morocco</h2>
+            <img class="country-photo" src="" alt="Morocco photo">
+            <p class="country-note">
+              Narrow streets, colorful tiles, and the smell of tea and spices.
+            </p>
+
+            <label>
+              Cities in Morocco:
+              <select class="city-select" data-country="morocco">
+                <option value="">Select a city…</option>
+                <option value="casablanca">Casablanca</option>
+                <option value="tangier">Tangier</option>
+              </select>
+            </label>
+
+            <div class="city-panel" data-country="morocco" data-city="casablanca">
+              <h3>Casablanca</h3>
+              <img class="city-photo" src="" alt="Casablanca photo">
+              <p class="city-note">
+                A big port city, ocean views, and modern life mixed with tradition.
+              </p>
+            </div>
+            <div class="city-panel" data-country="morocco" data-city="tangier">
+              <h3>Tangier</h3>
+              <img class="city-photo" src="" alt="Tangier photo">
+              <p class="city-note">
+                Meeting point of sea and continents – ferries, hills, and white buildings.
+              </p>
+            </div>
+          </div>
+
+          <!-- TUNISIA -->
+          <div class="country-card">
+            <h2>Tunisia</h2>
+            <img class="country-photo" src="" alt="Tunisia photo">
+            <p class="country-note">
+              Mediterranean light, ruins, and North African atmosphere.
+            </p>
+
+            <label>
+              Cities in Tunisia:
+              <select class="city-select" data-country="tunisia">
+                <option value="">Select a city…</option>
+                <option value="tunis">Tunis</option>
+                <option value="carthage">Carthage</option>
+              </select>
+            </label>
+
+            <div class="city-panel" data-country="tunisia" data-city="tunis">
+              <h3>Tunis</h3>
+              <img class="city-photo" src="" alt="Tunis photo">
+              <p class="city-note">
+                Old city streets, markets, and a mix of Arabic and French influence.
+              </p>
+            </div>
+            <div class="city-panel" data-country="tunisia" data-city="carthage">
+              <h3>Carthage</h3>
+              <img class="city-photo" src="" alt="Carthage photo">
+              <p class="city-note">
+                Ruins by the sea, history layered on top of history.
+              </p>
+            </div>
+          </div>
+
+          <!-- FRANCE -->
+          <div class="country-card">
+            <h2>France</h2>
+            <img class="country-photo" src="" alt="France photo">
+            <p class="country-note">
+              Cafés, rivers, and historic streets filled with art and stories.
+            </p>
+
+            <label>
+              Cities in France:
+              <select class="city-select" data-country="france">
+                <option value="">Select a city…</option>
+                <option value="paris">Paris</option>
+                <option value="strasbourg">Strasbourg</option>
+              </select>
+            </label>
+
+            <div class="city-panel" data-country="france" data-city="paris">
+              <h3>Paris</h3>
+              <img class="city-photo" src="" alt="Paris photo">
+              <p class="city-note">
+                Bridges over the Seine, museums, and long evening walks.
+              </p>
+            </div>
+            <div class="city-panel" data-country="france" data-city="strasbourg">
+              <h3>Strasbourg</h3>
+              <img class="city-photo" src="" alt="Strasbourg photo">
+              <p class="city-note">
+                Half-timbered houses, river views, and a border-city feeling.
+              </p>
+            </div>
+          </div>
+
+          <!-- ITALY -->
+          <div class="country-card">
+            <h2>Italy</h2>
+            <img class="country-photo" src="" alt="Italy photo">
+            <p class="country-note">
+              History in every street, good food, and warm city squares.
+            </p>
+
+            <label>
+              Cities in Italy:
+              <select class="city-select" data-country="italy">
+                <option value="">Select a city…</option>
+                <option value="rome">Rome</option>
+                <option value="florence">Florence</option>
+                <option value="venice">Venice</option>
+                <option value="milan">Milan</option>
+                <option value="pisa">Pisa</option>
+              </select>
+            </label>
+
+            <div class="city-panel" data-country="italy" data-city="rome">
+              <h3>Rome</h3>
+              <img class="city-photo" src="" alt="Rome photo">
+              <p class="city-note">
+                Walking among ruins and fountains like an open-air museum.
+              </p>
+            </div>
+            <div class="city-panel" data-country="italy" data-city="florence">
+              <h3>Florence</h3>
+              <img class="city-photo" src="" alt="Florence photo">
+              <p class="city-note">
+                Bridges, art, and the feeling of Renaissance everywhere.
+              </p>
+            </div>
+            <div class="city-panel" data-country="italy" data-city="venice">
+              <h3>Venice</h3>
+              <img class="city-photo" src="venice.jpg" alt="Venice photo">
+              <p class="city-note">
+                Boats instead of cars, narrow canals, and quiet corners.
+              </p>
+            </div>
+            <div class="city-panel" data-country="italy" data-city="milan">
+              <h3>Milan</h3>
+              <img class="city-photo" src="" alt="Milan photo">
+              <p class="city-note">
+                Modern city, fashion, and big central stations full of travelers.
+              </p>
+            </div>
+            <div class="city-panel" data-country="italy" data-city="pisa">
+              <h3>Pisa</h3>
+              <img class="city-photo" src="" alt="Pisa photo">
+              <p class="city-note">
+                The leaning tower and a classic postcard view.
+              </p>
+            </div>
+          </div>
+
+          <!-- SWITZERLAND -->
+          <div class="country-card">
+            <h2>Switzerland</h2>
+            <img class="country-photo" src="" alt="Switzerland photo">
+            <p class="country-note">
+              Mountains, lakes, and very clean, organized cities.
+            </p>
+
+            <label>
+              Cities in Switzerland:
+              <select class="city-select" data-country="switzerland">
+                <option value="">Select a city…</option>
+                <option value="zurich">Zurich</option>
+              </select>
+            </label>
+
+            <div class="city-panel" data-country="switzerland" data-city="zurich">
+              <h3>Zurich</h3>
+              <img class="city-photo" src="" alt="Zurich photo">
+              <p class="city-note">
+                Lake views, trams, and quiet, well-ordered streets.
+              </p>
+            </div>
+          </div>
+
+          <!-- GERMANY -->
+          <div class="country-card">
+            <h2>Germany</h2>
+            <img class="country-photo" src="" alt="Germany photo">
+            <p class="country-note">
+              Trains, rivers, and many different cities with their own character.
+            </p>
+
+            <label>
+              Cities in Germany:
+              <select class="city-select" data-country="germany">
+                <option value="">Select a city…</option>
+                <option value="hanover">Hanover</option>
+                <option value="hamburg">Hamburg</option>
+                <option value="berlin">Berlin</option>
+                <option value="munich">Munich</option>
+                <option value="frankfurt">Frankfurt</option>
+                <option value="osnabruck">Osnabrück</option>
+                <option value="ulm">Ulm</option>
+                <option value="stuttgart">Stuttgart</option>
+                <option value="cologne">Cologne</option>
+                <option value="dusseldorf">Düsseldorf</option>
+                <option value="essen">Essen</option>
+              </select>
+            </label>
+
+            <!-- each city panel similar, you can edit notes later -->
+            <div class="city-panel" data-country="germany" data-city="hanover">
+              <h3>Hanover</h3>
+              <img class="city-photo" src="" alt="Hanover photo">
+              <p class="city-note">Calm city, green parks, and classic German streets.</p>
+            </div>
+            <div class="city-panel" data-country="germany" data-city="hamburg">
+              <h3>Hamburg</h3>
+              <img class="city-photo" src="" alt="Hamburg photo">
+              <p class="city-note">Harbor, bridges, and ships everywhere.</p>
+            </div>
+            <div class="city-panel" data-country="germany" data-city="berlin">
+              <h3>Berlin</h3>
+              <img class="city-photo" src="" alt="Berlin photo">
+              <p class="city-note">History, street art, and many different neighborhoods.</p>
+            </div>
+            <div class="city-panel" data-country="germany" data-city="munich">
+              <h3>Munich</h3>
+              <img class="city-photo" src="" alt="Munich photo">
+              <p class="city-note">Bavarian style, big squares, and beer gardens.</p>
+            </div>
+            <div class="city-panel" data-country="germany" data-city="frankfurt">
+              <h3>Frankfurt</h3>
+              <img class="city-photo" src="" alt="Frankfurt photo">
+              <p class="city-note">Skyscrapers and a financial center feeling.</p>
+            </div>
+            <div class="city-panel" data-country="germany" data-city="osnabruck">
+              <h3>Osnabrück</h3>
+              <img class="city-photo" src="" alt="Osnabrück photo">
+              <p class="city-note">Smaller streets and a more local atmosphere.</p>
+            </div>
+            <div class="city-panel" data-country="germany" data-city="ulm">
+              <h3>Ulm</h3>
+              <img class="city-photo" src="" alt="Ulm photo">
+              <p class="city-note">Famous cathedral and calm river views.</p>
+            </div>
+            <div class="city-panel" data-country="germany" data-city="stuttgart">
+              <h3>Stuttgart</h3>
+              <img class="city-photo" src="" alt="Stuttgart photo">
+              <p class="city-note">Hills, industry, and car museums.</p>
+            </div>
+            <div class="city-panel" data-country="germany" data-city="cologne">
+              <h3>Cologne</h3>
+              <img class="city-photo" src="" alt="Cologne photo">
+              <p class="city-note">Cathedral by the river and a relaxed city feeling.</p>
+            </div>
+            <div class="city-panel" data-country="germany" data-city="dusseldorf">
+              <h3>Düsseldorf</h3>
+              <img class="city-photo" src="" alt="Düsseldorf photo">
+              <p class="city-note">Modern river promenade and lively streets.</p>
+            </div>
+            <div class="city-panel" data-country="germany" data-city="essen">
+              <h3>Essen</h3>
+              <img class="city-photo" src="" alt="Essen photo">
+              <p class="city-note">Former industrial area turned into new city spaces.</p>
+            </div>
+          </div>
+
+          <!-- NETHERLANDS -->
+          <div class="country-card">
+            <h2>Netherlands</h2>
+            <img class="country-photo" src="" alt="Netherlands photo">
+            <p class="country-note">
+              Flat land, bikes everywhere, and canals running through cities.
+            </p>
+
+            <label>
+              Cities in Netherlands:
+              <select class="city-select" data-country="netherlands">
+                <option value="">Select a city…</option>
+                <option value="amsterdam">Amsterdam</option>
+                <option value="rotterdam">Rotterdam</option>
+                <option value="seaside">Seaside town</option>
+              </select>
+            </label>
+
+            <div class="city-panel" data-country="netherlands" data-city="amsterdam">
+              <h3>Amsterdam</h3>
+              <img class="city-photo" src="" alt="Amsterdam photo">
+              <p class="city-note">Canals, narrow houses, and a lot of bicycles.</p>
+            </div>
+            <div class="city-panel" data-country="netherlands" data-city="rotterdam">
+              <h3>Rotterdam</h3>
+              <img class="city-photo" src="" alt="Rotterdam photo">
+              <p class="city-note">Modern buildings, big port, and wide bridges.</p>
+            </div>
+            <div class="city-panel" data-country="netherlands" data-city="seaside">
+              <h3>Seaside Town</h3>
+              <img class="city-photo" src="" alt="Dutch seaside town photo">
+              <p class="city-note">Wind, sand, and the North Sea waves.</p>
+            </div>
+          </div>
+
+          <!-- BELGIUM -->
+          <div class="country-card">
+            <h2>Belgium</h2>
+            <img class="country-photo" src="" alt="Belgium photo">
+            <p class="country-note">
+              Medieval city centers, canals, and strong coffee or hot chocolate.
+            </p>
+
+            <label>
+              Cities in Belgium:
+              <select class="city-select" data-country="belgium">
+                <option value="">Select a city…</option>
+                <option value="bruges">Bruges</option>
+                <option value="ghent">Ghent</option>
+                <option value="brussels">Brussels</option>
+              </select>
+            </label>
+
+            <div class="city-panel" data-country="belgium" data-city="bruges">
+              <h3>Bruges</h3>
+              <img class="city-photo" src="" alt="Bruges photo">
+              <p class="city-note">Canals, old houses, and very cozy streets.</p>
+            </div>
+            <div class="city-panel" data-country="belgium" data-city="ghent">
+              <h3>Ghent</h3>
+              <img class="city-photo" src="" alt="Ghent photo">
+              <p class="city-note">Student city feeling with history and nightlife.</p>
+            </div>
+            <div class="city-panel" data-country="belgium" data-city="brussels">
+              <h3>Brussels</h3>
+              <img class="city-photo" src="" alt="Brussels photo">
+              <p class="city-note">European capital vibes and a mix of languages.</p>
+            </div>
+          </div>
+
+          <!-- TURKEY -->
+          <div class="country-card">
+            <h2>Turkey</h2>
+            <img class="country-photo" src="" alt="Turkey photo">
+            <p class="country-note">
+              Home country memories: food, family, and many different regions in one map.
+            </p>
+
+            <label>
+              Cities in Turkey:
+              <select class="city-select" data-country="turkey">
+                <option value="">Select a city…</option>
+                <option value="ankara">Ankara</option>
+                <option value="istanbul">Istanbul</option>
+                <option value="izmir">Izmir</option>
+                <option value="konya">Konya</option>
+                <option value="kayseri">Kayseri</option>
+                <option value="sanliurfa">Şanlıurfa</option>
+                <option value="gaziantep">Gaziantep</option>
+                <option value="diyarbakir">Diyarbakır</option>
+                <option value="samsun">Samsun</option>
+                <option value="trabzon">Trabzon</option>
+                <option value="bursa">Bursa</option>
+                <option value="edirne">Edirne</option>
+                <option value="canakkale">Çanakkale</option>
+                <option value="aydin">Aydın</option>
+                <option value="mugla">Muğla</option>
+                <option value="denizli">Denizli</option>
+              </select>
+            </label>
+
+            <!-- örnek sadece birkaçına küçük not, diğerlerini sen doldurabilirsin -->
+            <div class="city-panel" data-country="turkey" data-city="istanbul">
+              <h3>Istanbul</h3>
+              <img class="city-photo" src="" alt="Istanbul photo">
+              <p class="city-note">Boğaz, vapurlar, simit ve çocukluk / gençlik hatıraları.</p>
+            </div>
+            <div class="city-panel" data-country="turkey" data-city="sanliurfa">
+              <h3>Şanlıurfa</h3>
+              <img class="city-photo" src="" alt="Şanlıurfa photo">
+              <p class="city-note">History, spicy food, and warm southern evenings.</p>
+            </div>
+            <div class="city-panel" data-country="turkey" data-city="gaziantep">
+              <h3>Gaziantep</h3>
+              <img class="city-photo" src="" alt="Gaziantep photo">
+              <p class="city-note">Baklava, kebap, and strong flavors everywhere.</p>
+            </div>
+            <!-- diğer şehir panellerini istersen aynı formatla ekleyebilirsin -->
+          </div>
+
+          <!-- SAUDI ARABIA -->
+          <div class="country-card">
+            <h2>Saudi Arabia</h2>
+            <img class="country-photo" src="" alt="Saudi Arabia photo">
+            <p class="country-note">
+              Spiritual journeys and powerful, quiet nights in the holy cities.
+            </p>
+
+            <label>
+              Cities in Saudi Arabia:
+              <select class="city-select" data-country="saudi">
+                <option value="">Select a city…</option>
+                <option value="mecca">Mecca</option>
+                <option value="medina">Medina</option>
+              </select>
+            </label>
+
+            <div class="city-panel" data-country="saudi" data-city="mecca">
+              <h3>Mecca</h3>
+              <img class="city-photo" src="" alt="Mecca photo">
+              <p class="city-note">Center of pilgrimage – full of emotion and prayer.</p>
+            </div>
+            <div class="city-panel" data-country="saudi" data-city="medina">
+              <h3>Medina</h3>
+              <img class="city-photo" src="" alt="Medina photo">
+              <p class="city-note">Peaceful, calm, and full of respect and memories.</p>
+            </div>
+          </div>
+
+          <!-- GEORGIA -->
+          <div class="country-card">
+            <h2>Georgia</h2>
+            <img class="country-photo" src="" alt="Georgia photo">
+            <p class="country-note">
+              Mountains, Black Sea coast, and friendly neighbors of Turkey.
+            </p>
+
+            <label>
+              Cities in Georgia:
+              <select class="city-select" data-country="georgia">
+                <option value="">Select a city…</option>
+                <option value="batumi">Batumi</option>
+                <option value="tbilisi">Tbilisi</option>
+              </select>
+            </label>
+
+            <div class="city-panel" data-country="georgia" data-city="batumi">
+              <h3>Batumi</h3>
+              <img class="city-photo" src="" alt="Batumi photo">
+              <p class="city-note">Black Sea coast with lights, music, and palm trees.</p>
+            </div>
+            <div class="city-panel" data-country="georgia" data-city="tbilisi">
+              <h3>Tbilisi</h3>
+              <img class="city-photo" src="" alt="Tbilisi photo">
+              <p class="city-note">Hills, bridges, and hot spring baths.</p>
+            </div>
+          </div>
+
+          <!-- KOSOVO -->
+          <div class="country-card">
+            <h2>Kosovo</h2>
+            <img class="country-photo" src="" alt="Kosovo photo">
+            <p class="country-note">
+              A young country with strong Balkan character and Turkish connections.
+            </p>
+
+            <label>
+              Cities in Kosovo:
+              <select class="city-select" data-country="kosovo">
+                <option value="">Select a city…</option>
+                <option value="pristina">Pristina</option>
+              </select>
+            </label>
+
+            <div class="city-panel" data-country="kosovo" data-city="pristina">
+              <h3>Pristina</h3>
+              <img class="city-photo" src="" alt="Pristina photo">
+              <p class="city-note">Capital city with new buildings and Balkan streets.</p>
+            </div>
+          </div>
+
+          <!-- ALBANIA -->
+          <div class="country-card">
+            <h2>Albania</h2>
+            <img class="country-photo" src="" alt="Albania photo">
+            <p class="country-note">
+              Mountain roads, coastal views, and deep history.
+            </p>
+
+            <label>
+              Cities in Albania:
+              <select class="city-select" data-country="albania">
+                <option value="">Select a city…</option>
+                <option value="berat">Berat</option>
+                <option value="tirana">Tirana</option>
+              </select>
+            </label>
+
+            <div class="city-panel" data-country="albania" data-city="berat">
+              <h3>Berat</h3>
+              <img class="city-photo" src="" alt="Berat photo">
+              <p class="city-note">“City of a thousand windows” with white houses on the hill.</p>
+            </div>
+            <div class="city-panel" data-country="albania" data-city="tirana">
+              <h3>Tirana</h3>
+              <img class="city-photo" src="" alt="Tirana photo">
+              <p class="city-note">Colorful buildings and a mix of old and new.</p>
+            </div>
+          </div>
+
+          <!-- NORTH MACEDONIA -->
+          <div class="country-card">
+            <h2>North Macedonia</h2>
+            <img class="country-photo" src="" alt="North Macedonia photo">
+            <p class="country-note">
+              Lakes, mountains, and strong Ottoman-era traces.
+            </p>
+
+            <label>
+              Cities in North Macedonia:
+              <select class="city-select" data-country="macedonia">
+                <option value="">Select a city…</option>
+                <option value="skopje">Skopje</option>
+                <option value="ohrid">Ohrid</option>
+              </select>
+            </label>
+
+            <div class="city-panel" data-country="macedonia" data-city="skopje">
+              <h3>Skopje</h3>
+              <img class="city-photo" src="" alt="Skopje photo">
+              <p class="city-note">Bridges, statues, and a bazaar that feels very familiar.</p>
+            </div>
+            <div class="city-panel" data-country="macedonia" data-city="ohrid">
+              <h3>Ohrid</h3>
+              <img class="city-photo" src="" alt="Ohrid photo">
+              <p class="city-note">Clear lake water and peaceful views from the hills.</p>
+            </div>
+          </div>
+
+          <!-- MONTENEGRO -->
+          <div class="country-card">
+            <h2>Montenegro</h2>
+            <img class="country-photo" src="" alt="Montenegro photo">
+            <p class="country-note">
+              Small country with strong coastline and mountain routes.
+            </p>
+
+            <label>
+              Cities in Montenegro:
+              <select class="city-select" data-country="montenegro">
+                <option value="">Select a city…</option>
+                <option value="budva">Budva</option>
+                <option value="kotor">Kotor</option>
+              </select>
+            </label>
+
+            <div class="city-panel" data-country="montenegro" data-city="budva">
+              <h3>Budva</h3>
+              <img class="city-photo" src="" alt="Budva photo">
+              <p class="city-note">Beach, old town walls, and summer nights.</p>
+            </div>
+            <div class="city-panel" data-country="montenegro" data-city="kotor">
+              <h3>Kotor</h3>
+              <img class="city-photo" src="" alt="Kotor photo">
+              <p class="city-note">Bay surrounded by mountains, very dramatic views.</p>
+            </div>
+          </div>
+
+          <!-- BOSNIA AND HERZEGOVINA -->
+          <div class="country-card">
+            <h2>Bosnia and Herzegovina</h2>
+            <img class="country-photo" src="" alt="Bosnia and Herzegovina photo">
+            <p class="country-note">
+              Rivers, bridges, and emotional history in every street.
+            </p>
+
+            <label>
+              Cities in Bosnia and Herzegovina:
+              <select class="city-select" data-country="bosnia">
+                <option value="">Select a city…</option>
+                <option value="sarajevo">Sarajevo</option>
+                <option value="mostar">Mostar</option>
+              </select>
+            </label>
+
+            <div class="city-panel" data-country="bosnia" data-city="sarajevo">
+              <h3>Sarajevo</h3>
+              <img class="city-photo" src="" alt="Sarajevo photo">
+              <p class="city-note">Mountains around the city and a strong mixture of cultures.</p>
+            </div>
+            <div class="city-panel" data-country="bosnia" data-city="mostar">
+              <h3>Mostar</h3>
+              <img class="city-photo" src="" alt="Mostar photo">
+              <p class="city-note">Famous bridge over turquoise water – like a postcard.</p>
+            </div>
+          </div>
+
+        </div><!-- /country-grid -->
+      </div><!-- /countries -->
+    </section>
+  </main>
+
+  <script>
+    // Simple dropdown handler: show selected city panel per country
+    document.querySelectorAll('.city-select').forEach(function(select){
+      select.addEventListener('change', function(){
+        var country = this.dataset.country;
+        var value = this.value;
+        var panels = document.querySelectorAll('.city-panel[data-country="' + country + '"]');
+        panels.forEach(function(panel){
+          panel.style.display = (panel.dataset.city === value) ? 'block' : 'none';
+        });
+      });
+      // optional: open first city automatically if you want
+      // if (select.options.length > 1) { select.selectedIndex = 1; select.dispatchEvent(new Event('change')); }
+    });
+  </script>
+
+</body>
+</html>
