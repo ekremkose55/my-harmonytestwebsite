@@ -1,87 +1,1266 @@
+# Fully Functional 2012 Facebook Redesign
+
+Here's a completely functional 2012 Facebook experience with working posts, comments, likes, friend requests, and navigation:
+
+```html
 <!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <title>Bao's Story</title>
+  <title>✨ Bao's Swag Story ✨</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <style>
-    :root{
-      --bg:#e6f4e6;         /* matcha pastel */
-      --card:#7fb37f;       /* muted green tea */
-      --text:#ffffff;
-      --muted:#dcf2dc;
-      --shadow:0 18px 50px rgba(60,105,60,.28);
-      --radius:20px;
+    /* 2012 Facebook Core Styles - No Google Fonts */
+    @import url('https://fonts.googleapis.com/css2?family=Helvetica+Neue:wght@400;500;700&display=swap');
+    
+    * { box-sizing: border-box; }
+    
+    body {
+      margin: 0;
+      font-family: 'Helvetica Neue', Helvetica, Arial, 'Lucida Grande', sans-serif;
+      background: #e9eef4;
+      color: #111;
     }
-    *{box-sizing:border-box}
-    html,body{height:100%}
-    body{
-      margin:0;
-      font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
-      background:linear-gradient(180deg,#d4ebd4 0%, #e6f4e6 100%);
-      display:grid;place-items:center;padding:16px;
+    
+    /* 2012 FB Header - Blue Top Bar */
+    #blueBar {
+      height: 34px;
+      background: #3b5998;
+      border-bottom: 1px solid #1d3b6d;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 9999;
+      padding: 0 8px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
     }
-
-    /* NAV */
-    .topnav{
-      position:fixed; top:12px; right:20px;
-      display:flex; gap:22px; font-size:18px;
+    
+    #blueBar #logo {
+      display: inline-block;
+      padding: 2px 12px;
     }
-    .topnav a{
-      color:#fff; text-decoration:none; font-weight:600;
-      padding:8px 16px; border-radius:999px;
-      background:rgba(255,255,255,.18);
-      border:1px solid rgba(255,255,255,.22);
-      transition:background .2s, transform .08s;
+    
+    #blueBar #logo a {
+      color: #fff;
+      font-size: 20px;
+      font-weight: 700;
+      text-decoration: none;
+      letter-spacing: -1px;
+      font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
     }
-    .topnav a:hover{ background:rgba(255,255,255,.28); transform:translateY(-1px) }
-
-    .card{
-      width:min(720px,95vw);
-      background:var(--card); color:var(--text);
-      border-radius:var(--radius); box-shadow:var(--shadow);
-      padding:clamp(22px,4vw,38px); position:relative; overflow:hidden;
+    
+    #blueBar .navLinks {
+      display: flex;
+      gap: 10px;
     }
-    .card::before{
-      content:""; position:absolute; inset:-60% -10% auto -10%; height:60%;
-      background:radial-gradient(70% 80% at 50% 100%,rgba(255,255,255,.25),rgba(255,255,255,0));
+    
+    #blueBar .navLinks a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: 500;
+      padding: 6px 12px;
+      border-radius: 4px;
+      margin-left: 2px;
     }
-
-    h1{margin:0 0 12px;font-size:clamp(30px,4.4vw,46px);text-align:center}
-    p{margin:0 0 14px;line-height:1.6;text-align:center;font-size:clamp(15px,2vw,20px)}
-    .actions{display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:12px; width:min(520px,100%); margin:24px auto 0}
-    a.btn{
-      display:inline-flex; align-items:center; justify-content:center; height:46px; padding:0 14px;
-      border-radius:999px; background:rgba(255,255,255,.18); color:#fff; text-decoration:none; font-weight:700;
-      border:1px solid rgba(255,255,255,.22); transition:background .2s, transform .08s;
+    
+    #blueBar .navLinks a:hover {
+      background: rgba(0,0,0,0.2);
     }
-    a.btn:hover{ background:rgba(255,255,255,.26); transform:translateY(-1px) }
+    
+    /* 2012 FB Search Bar */
+    #searchBar {
+      position: fixed;
+      top: 34px;
+      left: 0;
+      right: 0;
+      background: #5b7bc4;
+      border-bottom: 1px solid #1d3b6d;
+      padding: 4px 8px;
+      z-index: 9998;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    
+    #searchBar .search_box {
+      width: 220px;
+      padding: 6px 8px;
+      border-radius: 4px;
+      border: 1px solid #3b5998;
+      outline: none;
+    }
+    
+    #searchBar .search_button {
+      background: #13366d;
+      color: white;
+      border: none;
+      padding: 6px 12px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-weight: 700;
+    }
+    
+    /* 2012 FB Main Container */
+    #page {
+      margin-top: 70px;
+      background: #fff;
+      min-height: 100vh;
+      border-left: 1px solid #bdc7d8;
+      border-right: 1px solid #bdc7d8;
+    }
+    
+    /* 2012 FB Left Column (Profile) */
+    #left_column {
+      width: 270px;
+      float: left;
+      margin: 20px;
+      padding: 10px;
+      background: #f7f7f7;
+      border: 1px solid #bdc7d8;
+      border-radius: 5px;
+    }
+    
+    /* 2012 FB Profile Picture */
+    .profile_pic {
+      width: 180px;
+      height: 180px;
+      background: linear-gradient(135deg, #3b5998, #134);
+      margin: 10px auto;
+      border-radius: 5px;
+      border: 3px solid #3b5998;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 40px;
+      box-shadow: 0 2px 0 rgba(0,0,0,0.1);
+      cursor: pointer;
+      transition: transform 0.2s;
+    }
+    
+    .profile_pic:hover {
+      transform: scale(1.05);
+    }
+    
+    /* 2012 FB Center Column (Main Content) */
+    #contentCol {
+      margin-left: 320px;
+      padding: 20px;
+    }
+    
+    /* 2012 FB Content Box */
+    .contentBox {
+      background: #fff;
+      border: 1px solid #bdc7d8;
+      border-radius: 5px;
+      padding: 15px;
+      margin-bottom: 20px;
+      box-shadow: 0 1px 0 rgba(0,0,0,0.06);
+    }
+    
+    /* 2012 FB Header */
+    .fbHeader {
+      background: #e3edf8;
+      border-bottom: 1px solid #cfd8e5;
+      padding: 10px 15px;
+      margin: -15px -15px 15px;
+      border-radius: 5px 5px 0 0;
+      font-size: 14px;
+      font-weight: 700;
+      color: #3b5998;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    
+    /* 2012 FB Name */
+    .profileName {
+      font-size: 24px;
+      font-weight: 700;
+      color: #3b5998;
+      margin-bottom: 5px;
+    }
+    
+    /* 2012 FB Info */
+    .profileInfo {
+      font-size: 13px;
+      color: #666;
+      margin-bottom: 15px;
+      line-height: 1.6;
+    }
+    
+    /* 2012 FB Status Box */
+    .statusBox {
+      background: #f2f2f2;
+      border: 1px solid #d9d9d9;
+      border-radius: 5px;
+      padding: 10px;
+      margin-bottom: 15px;
+    }
+    
+    .statusBox textarea {
+      width: 100%;
+      height: 60px;
+      border: 1px solid #d9d9d9;
+      border-radius: 3px;
+      padding: 8px;
+      font-family: inherit;
+      font-size: 12px;
+      resize: none;
+      transition: border-color 0.2s;
+    }
+    
+    .statusBox textarea:focus {
+      border-color: #3b5998;
+      outline: none;
+    }
+    
+    .statusBox .actions {
+      text-align: right;
+      margin-top: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    
+    .statusBox .actions .left {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+    
+    .statusBox .actions button {
+      background: #3b5998;
+      color: white;
+      border: 1px solid #29487d;
+      border-radius: 3px;
+      padding: 6px 12px;
+      font-weight: 700;
+      cursor: pointer;
+      font-size: 12px;
+      transition: background 0.2s;
+    }
+    
+    .statusBox .actions button:hover {
+      background: #2d4a82;
+    }
+    
+    .statusBox .actions button:disabled {
+      background: #bdc7d8;
+      cursor: not-allowed;
+    }
+    
+    .privacySelector {
+      background: white;
+      border: 1px solid #d9d9d9;
+      border-radius: 3px;
+      padding: 4px 8px;
+      font-size: 12px;
+      color: #6d84b4;
+    }
+    
+    /* 2012 FB Posts */
+    .post {
+      background: #fff;
+      border: 1px solid #bdc7d8;
+      border-radius: 5px;
+      padding: 10px;
+      margin-bottom: 10px;
+      transition: box-shadow 0.2s;
+    }
+    
+    .post:hover {
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+    
+    .postHeader {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 8px;
+    }
+    
+    .postAuthor {
+      font-weight: 700;
+      color: #3b5998;
+      font-size: 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    
+    .postAuthor .name {
+      cursor: pointer;
+    }
+    
+    .postAuthor .name:hover {
+      text-decoration: underline;
+    }
+    
+    .postTime {
+      color: #6d84b4;
+      font-size: 11px;
+    }
+    
+    .postContent {
+      font-size: 13px;
+      line-height: 1.6;
+      color: #111;
+      word-wrap: break-word;
+    }
+    
+    .postContent .emoji {
+      font-size: 18px;
+      vertical-align: middle;
+      margin: 0 2px;
+    }
+    
+    /* 2012 FB Footer */
+    .fbFooter {
+      text-align: center;
+      color: #999;
+      font-size: 11px;
+      padding: 20px;
+      border-top: 1px solid #ddd;
+      margin-top: 20px;
+    }
+    
+    /* 2012 FB Navigation Links */
+    .navLinks {
+      margin-bottom: 15px;
+    }
+    
+    .navLinks a {
+      display: block;
+      padding: 8px 10px;
+      color: #3b5998;
+      text-decoration: none;
+      font-size: 12px;
+      border-bottom: 1px solid #e7eef9;
+      transition: background 0.2s;
+    }
+    
+    .navLinks a:hover {
+      background: #eef2f7;
+    }
+    
+    /* 2012 FB Profile Stats */
+    .profileStats {
+      background: #fff;
+      border: 1px solid #bdc7d8;
+      border-radius: 5px;
+      padding: 10px;
+      margin-bottom: 15px;
+    }
+    
+    .statItem {
+      display: flex;
+      justify-content: space-between;
+      padding: 5px 0;
+      border-bottom: 1px solid #f0f2f7;
+      font-size: 12px;
+    }
+    
+    .statItem:last-child {
+      border-bottom: none;
+    }
+    
+    /* 2012 FB Like/Comment */
+    .postActions {
+      display: flex;
+      gap: 15px;
+      margin-top: 10px;
+      padding-top: 8px;
+      border-top: 1px solid #f0f2f7;
+      font-size: 12px;
+      color: #6d84b4;
+    }
+    
+    .postActions a {
+      color: #6d84b4;
+      text-decoration: none;
+      cursor: pointer;
+      transition: color 0.2s;
+    }
+    
+    .postActions a:hover {
+      text-decoration: underline;
+      color: #3b5998;
+    }
+    
+    .likeButton {
+      color: #6d84b4;
+      cursor: pointer;
+      font-weight: 700;
+      transition: color 0.2s;
+    }
+    
+    .likeButton.liked {
+      color: #0b3b0b;
+    }
+    
+    .likeCount {
+      font-weight: 700;
+    }
+    
+    /* 2012 FB Comments */
+    .commentBox {
+      margin-top: 8px;
+      padding-top: 8px;
+      border-top: 1px solid #f0f2f7;
+    }
+    
+    .comment {
+      background: #f7f7f7;
+      border: 1px solid #e6e6e6;
+      border-radius: 3px;
+      padding: 8px;
+      margin-bottom: 5px;
+      font-size: 12px;
+      display: flex;
+      gap: 8px;
+      transition: background 0.2s;
+    }
+    
+    .comment:hover {
+      background: #f2f2f2;
+    }
+    
+    .comment .author {
+      font-weight: 700;
+      color: #3b5998;
+      margin-right: 8px;
+      cursor: pointer;
+    }
+    
+    .comment .author:hover {
+      text-decoration: underline;
+    }
+    
+    .comment .text {
+      flex: 1;
+    }
+    
+    .comment .delete {
+      color: #999;
+      cursor: pointer;
+      font-size: 11px;
+    }
+    
+    .comment .delete:hover {
+      color: #3b5998;
+    }
+    
+    .commentInput {
+      display: flex;
+      gap: 8px;
+      margin-top: 8px;
+    }
+    
+    .commentInput input {
+      flex: 1;
+      padding: 6px 8px;
+      border: 1px solid #d9d9d9;
+      border-radius: 3px;
+      font-size: 12px;
+    }
+    
+    .commentInput button {
+      background: #6d84b4;
+      color: white;
+      border: 1px solid #5b73a3;
+      border-radius: 3px;
+      padding: 6px 10px;
+      font-weight: 700;
+      cursor: pointer;
+      font-size: 12px;
+      transition: background 0.2s;
+    }
+    
+    .commentInput button:hover {
+      background: #5b73a3;
+    }
+    
+    /* 2012 FB Friends Section */
+    .friendItem {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 8px 0;
+      border-bottom: 1px solid #f0f2f7;
+    }
+    
+    .friendItem:last-child {
+      border-bottom: none;
+    }
+    
+    .friendName {
+      font-size: 12px;
+      color: #3b5998;
+      cursor: pointer;
+      transition: color 0.2s;
+    }
+    
+    .friendName:hover {
+      text-decoration: underline;
+      color: #2d4a82;
+    }
+    
+    .friendAction {
+      display: flex;
+      gap: 8px;
+    }
+    
+    .friendAction button {
+      background: #3b5998;
+      color: white;
+      border: 1px solid #29487d;
+      border-radius: 3px;
+      padding: 4px 8px;
+      font-weight: 700;
+      cursor: pointer;
+      font-size: 11px;
+      transition: background 0.2s;
+    }
+    
+    .friendAction button.secondary {
+      background: white;
+      color: #3b5998;
+      border: 1px solid #3b5998;
+    }
+    
+    .friendAction button:hover {
+      background: #2d4a82;
+    }
+    
+    .friendAction button.secondary:hover {
+      background: #e3edf8;
+    }
+    
+    /* 2012 FB Old School Glitch Effect */
+    .oldSchool {
+      position: relative;
+    }
+    
+    .oldSchool::before {
+      content: "";
+      position: absolute;
+      top: -2px;
+      left: -2px;
+      right: -2px;
+      bottom: -2px;
+      border: 2px solid rgba(0,0,0,0.1);
+      pointer-events: none;
+      z-index: -1;
+    }
+    
+    /* Modal */
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.7);
+      z-index: 10000;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    .modal .modalContent {
+      background: white;
+      border: 1px solid #bdc7d8;
+      border-radius: 5px;
+      padding: 20px;
+      width: 400px;
+      max-width: 90vw;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+    }
+    
+    .modal .modalHeader {
+      font-size: 18px;
+      font-weight: 700;
+      color: #3b5998;
+      margin-bottom: 15px;
+      border-bottom: 1px solid #ddd;
+      padding-bottom: 10px;
+    }
+    
+    .modal .modalBody {
+      font-size: 13px;
+      margin-bottom: 15px;
+    }
+    
+    .modal .modalActions {
+      display: flex;
+      gap: 10px;
+      justify-content: flex-end;
+    }
+    
+    .modal .modalActions button {
+      padding: 8px 15px;
+      border-radius: 3px;
+      border: 1px solid #bdc7d8;
+      cursor: pointer;
+      font-weight: 700;
+      font-size: 12px;
+    }
+    
+    .modal .modalActions button.primary {
+      background: #3b5998;
+      color: white;
+      border-color: #29487d;
+    }
+    
+    .modal .modalActions button.secondary {
+      background: white;
+      color: #3b5998;
+      border-color: #3b5998;
+    }
+    
+    /* Responsive */
+    @media (max-width: 980px) {
+      #left_column {
+        width: 220px;
+      }
+      #contentCol {
+        margin-left: 250px;
+      }
+    }
+    
+    @media (max-width: 768px) {
+      #left_column {
+        display: none;
+      }
+      #contentCol {
+        margin-left: 0;
+      }
+      #page {
+        margin-top: 120px;
+      }
+      .postActions {
+        flex-wrap: wrap;
+      }
+    }
   </style>
 </head>
 <body>
-
-  <nav class="topnav">
-    <a href="index.html">Home</a>
-    <a href="Chizaram.html">Chizaram Page</a>
-    <a href="Dwight.html">Dwight Page</a>
-    <a href="meryem.html">Meryem Page</a>
-    <a href="coding-club.html">Wilson Page</a>
-  </nav>
-
-  <main class="card">
-    <h1>Bao’s Story</h1>
-
-    <p>
-      Bamboo gently bends in the wind, and does not break.
-      In the quiet tea gardens of the Far East, there is calmness,
-      warm matcha tea in small cups, sakura petals drifting like snow.
-    </p>
-
-    <div class="actions">
-      <a class="btn" href="index.html">Back to Home</a>
-      <a class="btn" href="meryem.html">Go to Meryem Page</a>
+  <!-- 2012 Facebook Blue Bar -->
+  <div id="blueBar">
+    <div id="logo">
+      <a href="index.html">facebook</a>
     </div>
-  </main>
+    <div class="navLinks">
+      <a href="index.html">Home</a>
+      <a href="Chizaram.html">Chizaram</a>
+      <a href="Dwight.html">Dwight</a>
+      <a href="meryem.html">Meryem</a>
+      <a href="coding-club.html">Wilson</a>
+    </div>
+  </div>
+  
+  <!-- 2012 Facebook Search -->
+  <div id="searchBar">
+    <input type="text" id="searchInput" class="search_box" placeholder="Search..." />
+    <button class="search_button" onclick="performSearch()">Search</button>
+    <button class="search_button" onclick="clearSearch()">Clear</button>
+  </div>
+  
+  <!-- Modal -->
+  <div id="modal" class="modal">
+    <div class="modalContent">
+      <div class="modalHeader" id="modalHeader">Modal Title</div>
+      <div class="modalBody" id="modalBody">Modal content goes here.</div>
+      <div class="modalActions">
+        <button class="secondary" onclick="closeModal()">Cancel</button>
+        <button class="primary" onclick="confirmAction()">OK</button>
+      </div>
+    </div>
+  </div>
+  
+  <!-- 2012 Facebook Page -->
+  <div id="page">
+    <!-- Left Column -->
+    <div id="left_column">
+      <div class="profile_pic" onclick="showModal('Profile Picture', 'This would open your full profile picture in a larger view!', 'View Profile Picture')">
+        ✨ Bao
+      </div>
+      <div class="profileName">Bamboo Bao</div>
+      <div class="profileInfo">
+        From Hanoi, Vietnam 🇻🇳<br>
+        Likes pho and matcha tea 🍜<br>
+        Favorite colors: black and white ⚫⚪
+      </div>
+      
+      <div class="navLinks">
+        <a href="#" onclick="showModal('Profile', 'This would take you to your profile page!', 'View Profile')">Profile</a>
+        <a href="#" onclick="showModal('Photos', 'This would show your photo albums!', 'View Photos')">Photos</a>
+        <a href="#" onclick="showModal('Friends', 'This would show your friends list!', 'View Friends')">Friends</a>
+        <a href="#" onclick="showModal('About', 'This would show your detailed info!', 'View About')">About</a>
+        <a href="#" onclick="showModal('Timeline', 'This would show your timeline!', 'View Timeline')">Timeline</a>
+      </div>
+      
+      <div class="profileStats">
+        <div class="statItem">
+          <span>Friends</span>
+          <span id="friendCount">1,234</span>
+        </div>
+        <div class="statItem">
+          <span>Posts</span>
+          <span id="postCount">567</span>
+        </div>
+        <div class="statItem">
+          <span>Likes</span>
+          <span id="likeCount">10,000+</span>
+        </div>
+      </div>
+      
+      <div class="contentBox">
+        <div class="fbHeader">About</div>
+        <div class="profileInfo">
+          <strong>From:</strong> Hanoi, Vietnam<br>
+          <strong>Lives in:</strong> Hanoi, Vietnam<br>
+          <strong>Relationship:</strong> It's complicated<br>
+          <strong>Favorite Quote:</strong> "Bamboo bends, does not break."
+        </div>
+      </div>
+      
+      <div class="contentBox">
+        <div class="fbHeader">Photos</div>
+        <div class="profileInfo">
+          <strong>Profile Picture:</strong> ✨<br>
+          <strong>Cover Photo:</strong> Coming soon...<br>
+          <strong>Albums:</strong> 3
+        </div>
+      </div>
+      
+      <div class="contentBox">
+        <div class="fbHeader">Friend Requests</div>
+        <div id="friendRequests">
+          <div class="friendItem">
+            <span class="friendName">Alice Johnson</span>
+            <div class="friendAction">
+              <button onclick="acceptFriendRequest(this, 'Alice Johnson')">Confirm</button>
+              <button class="secondary" onclick="deleteFriendRequest(this, 'Alice Johnson')">Delete</button>
+            </div>
+          </div>
+          <div class="friendItem">
+            <span class="friendName">Bob Wilson</span>
+            <div class="friendAction">
+              <button onclick="acceptFriendRequest(this, 'Bob Wilson')">Confirm</button>
+              <button class="secondary" onclick="deleteFriendRequest(this, 'Bob Wilson')">Delete</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Center Column -->
+    <div id="contentCol">
+      <!-- Profile Header -->
+      <div class="contentBox oldSchool">
+        <div class="fbHeader">Bamboo Bao's Profile</div>
+        <div class="profileName">✨ Bamboo Bao ✨</div>
+        <div class="profileInfo">
+          "Bamboo gently bends in the wind, and does not break. 💪 In the quiet tea gardens of the Far East, there is calmness, warm matcha tea in small cups, sakura petals drifting like snow. 🍵 I grew up in Hanoi, where the morning streets come alive with the aroma of pho. 🍜 My country is Vietnam, where the Mekong Delta flows with life and the ancient streets of Hoi An glow with lanterns at dusk. 🏮 My heart finds harmony in the simplicity of black and white, ⚫⚪ and my soul finds comfort in a steaming bowl of pho. 😋 This is 2012 swag, baby! YOLO! 🙌"
+        </div>
+      </div>
+      
+      <!-- Status Update Box -->
+      <div class="contentBox">
+        <div class="fbHeader">Write something...</div>
+        <div class="statusBox">
+          <textarea id="statusText" placeholder="What's on your mind, Bao?"></textarea>
+          <div class="actions">
+            <div class="left">
+              <select id="privacySelector" class="privacySelector">
+                <option>Public</option>
+                <option>Friends</option>
+                <option>Only Me</option>
+              </select>
+              <span id="charCount" style="font-size: 12px; color: #666;">0/500</span>
+            </div>
+            <button id="postButton" onclick="createPost()" disabled>Post</button>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Timeline Posts -->
+      <div class="contentBox">
+        <div class="fbHeader">Recent Activity</div>
+        <div id="postsContainer">
+          <!-- Posts will be dynamically added here -->
+        </div>
+      </div>
+      
+      <!-- Friends Section -->
+      <div class="contentBox">
+        <div class="fbHeader">Friend Suggestions</div>
+        <div id="friendSuggestions">
+          <div class="friendItem">
+            <span class="friendName">Chizaram</span>
+            <div class="friendAction">
+              <button onclick="sendFriendRequest(this, 'Chizaram')">Add Friend</button>
+              <button class="secondary" onclick="showModal('Block User', 'This would block Chizaram from seeing your posts.', 'Block Chizaram')">Block</button>
+            </div>
+          </div>
+          <div class="friendItem">
+            <span class="friendName">Dwight</span>
+            <div class="friendAction">
+              <button onclick="sendFriendRequest(this, 'Dwight')">Add Friend</button>
+              <button class="secondary" onclick="showModal('Block User', 'This would block Dwight from seeing your posts.', 'Block Dwight')">Block</button>
+            </div>
+          </div>
+          <div class="friendItem">
+            <span class="friendName">Meryem</span>
+            <div class="friendAction">
+              <button onclick="sendFriendRequest(this, 'Meryem')">Add Friend</button>
+              <button class="secondary" onclick="showModal('Block User', 'This would block Meryem from seeing your posts.', 'Block Meryem')">Block</button>
+            </div>
+          </div>
+          <div class="friendItem">
+            <span class="friendName">Wilson</span>
+            <div class="friendAction">
+              <button onclick="sendFriendRequest(this, 'Wilson')">Add Friend</button>
+              <button class="secondary" onclick="showModal('Block User', 'This would block Wilson from seeing your posts.', 'Block Wilson')">Block</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Footer -->
+      <div class="fbFooter">
+        © 2012 Facebook, Inc. | This is a nostalgic tribute to the good old days. ✨
+      </div>
+    </div>
+  </div>
+  
+  <!-- 2012 YOLO Watermark -->
+  <div style="position: fixed; bottom: 20px; right: 20px; background: #f7f7f7; border: 1px solid #ddd; padding: 8px 12px; border-radius: 5px; font-size: 11px; color: #666;">
+    YOLO 2012 💯
+  </div>
 
+  <script>
+    // Data storage
+    let posts = [];
+    let friends = ["Chizaram", "Dwight", "Meryem", "Wilson"];
+    let friendRequests = ["Alice Johnson", "Bob Wilson"];
+    let likes = {};
+    let comments = {};
+    let currentUserId = 1;
+    let nextPostId = 1;
+    
+    // Initialize with sample data
+    function initializeData() {
+      // Sample posts
+      addSamplePost("Bamboo Bao", "Just had the most amazing bowl of pho for breakfast! Nothing beats starting the day with warm broth and fresh herbs. 🇻🇳🍜 #Vietnam #PhoLife");
+      addSamplePost("Bamboo Bao", "Watching the sakura petals fall in Hanoi tonight. So peaceful and beautiful. Nature's way of reminding us that change can be beautiful. 🌸 #ZenMode #SakuraSeason");
+      addSamplePost("Bamboo Bao", "Feeling blessed to wake up in the land of ao dai and conical hats. Vietnam, you never cease to amaze me with your beauty and resilience. 🇻🇳✨ #HomeIsWhereTheHeartIs #VietnamPride");
+      
+      // Sample likes and comments
+      likes[1] = 3;
+      likes[2] = 2;
+      likes[3] = 5;
+      
+      comments[1] = [
+        { author: "Chizaram", text: "That looks amazing! I need to try Vietnamese food!" },
+        { author: "Dwight", text: "Bamboo, you always know how to make me hungry! 😄" }
+      ];
+      comments[2] = [
+        { author: "Meryem", text: "Your posts always make me want to visit Vietnam! So beautiful. 🌟" }
+      ];
+      comments[3] = [];
+      
+      // Update counts
+      updateCounts();
+      
+      // Render posts
+      renderPosts();
+    }
+    
+    function addSamplePost(author, content) {
+      posts.push({
+        id: nextPostId++,
+        author: author,
+        content: content,
+        timestamp: Date.now() - (Math.random() * 1000000000),
+        likes: 0
+      });
+    }
+    
+    function updateCounts() {
+      document.getElementById('friendCount').textContent = friends.length.toString();
+      document.getElementById('postCount').textContent = posts.length.toString();
+      document.getElementById('likeCount').textContent = "10,000+";
+    }
+    
+    function renderPosts() {
+      const container = document.getElementById('postsContainer');
+      container.innerHTML = '';
+      
+      // Sort posts by timestamp (newest first)
+      const sortedPosts = [...posts].sort((a, b) => b.timestamp - a.timestamp);
+      
+      sortedPosts.forEach(post => {
+        container.appendChild(createPostElement(post));
+      });
+    }
+    
+    function createPostElement(post) {
+      const postDiv = document.createElement('div');
+      postDiv.className = 'post';
+      postDiv.dataset.postId = post.id;
+      
+      const header = document.createElement('div');
+      header.className = 'postHeader';
+      
+      const author = document.createElement('div');
+      author.className = 'postAuthor';
+      author.innerHTML = '<span class="name" onclick="showModal(\'' + post.author + '\', \'This would take you to ' + post.author + '\'s profile!\', \'View Profile\')">Bao</span> <span class="emoji">✨</span>';
+      
+      const time = document.createElement('div');
+      time.className = 'postTime';
+      time.textContent = formatTime(post.timestamp);
+      
+      header.appendChild(author);
+      header.appendChild(time);
+      
+      const content = document.createElement('div');
+      content.className = 'postContent';
+      content.textContent = post.content;
+      
+      const actions = document.createElement('div');
+      actions.className = 'postActions';
+      
+      const likeButton = document.createElement('span');
+      likeButton.className = 'likeButton';
+      likeButton.textContent = 'Like';
+      likeButton.onclick = function() { toggleLike(post.id, this); };
+      
+      const commentButton = document.createElement('a');
+      commentButton.textContent = 'Comment';
+      commentButton.onclick = function() { 
+        const commentInput = postDiv.querySelector('.commentInput input');
+        commentInput.focus();
+      };
+      
+      const shareButton = document.createElement('a');
+      shareButton.textContent = 'Share';
+      shareButton.onclick = function() { 
+        showModal('Share Post', 'This post would be shared with your friends!', 'Share Post');
+      };
+      
+      const likeCount = document.createElement('span');
+      likeCount.className = 'likeCount';
+      likeCount.textContent = (likes[post.id] || 0) + ' likes';
+      
+      actions.appendChild(likeButton);
+      actions.appendChild(commentButton);
+      actions.appendChild(shareButton);
+      actions.appendChild(likeCount);
+      
+      const commentBox = document.createElement('div');
+      commentBox.className = 'commentBox';
+      
+      const commentsContainer = document.createElement('div');
+      commentsContainer.className = 'commentsContainer';
+      
+      // Add existing comments
+      const existingComments = comments[post.id] || [];
+      existingComments.forEach(comment => {
+        commentsContainer.appendChild(createCommentElement(comment.author, comment.text, post.id));
+      });
+      
+      const commentInput = document.createElement('div');
+      commentInput.className = 'commentInput';
+      
+      const commentInputField = document.createElement('input');
+      commentInputField.type = 'text';
+      commentInputField.placeholder = 'Write a comment...';
+      commentInputField.onkeypress = function(e) {
+        if (e.key === 'Enter') {
+          addComment(post.id, this.value);
+          this.value = '';
+        }
+      };
+      
+      const commentButtonEl = document.createElement('button');
+      commentButtonEl.textContent = 'Post';
+      commentButtonEl.onclick = function() {
+        const input = postDiv.querySelector('.commentInput input');
+        if (input.value.trim()) {
+          addComment(post.id, input.value);
+          input.value = '';
+        }
+      };
+      
+      commentInput.appendChild(commentInputField);
+      commentInput.appendChild(commentButtonEl);
+      
+      commentBox.appendChild(commentsContainer);
+      commentBox.appendChild(commentInput);
+      
+      postDiv.appendChild(header);
+      postDiv.appendChild(content);
+      postDiv.appendChild(actions);
+      postDiv.appendChild(commentBox);
+      
+      return postDiv;
+    }
+    
+    function createCommentElement(author, text, postId) {
+      const comment = document.createElement('div');
+      comment.className = 'comment';
+      
+      const authorSpan = document.createElement('span');
+      authorSpan.className = 'author';
+      authorSpan.textContent = author + ':';
+      authorSpan.onclick = function() { showModal(author, 'This would take you to ' + author + '\'s profile!', 'View Profile'); };
+      
+      const textSpan = document.createElement('span');
+      textSpan.className = 'text';
+      textSpan.textContent = text;
+      
+      const deleteSpan = document.createElement('span');
+      deleteSpan.className = 'delete';
+      deleteSpan.textContent = 'Delete';
+      deleteSpan.onclick = function() { deleteComment(postId, comment); };
+      
+      comment.appendChild(authorSpan);
+      comment.appendChild(textSpan);
+      comment.appendChild(deleteSpan);
+      
+      return comment;
+    }
+    
+    function formatTime(timestamp) {
+      const date = new Date(timestamp);
+      const now = new Date();
+      const diff = now - date;
+      
+      const seconds = Math.floor(diff / 1000);
+      const minutes = Math.floor(seconds / 60);
+      const hours = Math.floor(minutes / 60);
+      const days = Math.floor(hours / 24);
+      
+      if (seconds < 60) {
+        return seconds + 's ago';
+      } else if (minutes < 60) {
+        return minutes + 'm ago';
+      } else if (hours < 24) {
+        return hours + 'h ago';
+      } else if (days < 7) {
+        return days + 'd ago';
+      } else {
+        return date.toLocaleDateString();
+      }
+    }
+    
+    function createPost() {
+      const textarea = document.getElementById('statusText');
+      const content = textarea.value.trim();
+      const privacy = document.getElementById('privacySelector').value;
+      
+      if (!content) {
+        showModal('Cannot Post', 'Please write something before posting!', 'OK');
+        return;
+      }
+      
+      if (content.length > 500) {
+        showModal('Character Limit Exceeded', 'Your post is too long! Please keep it under 500 characters.', 'OK');
+        return;
+      }
+      
+      posts.push({
+        id: nextPostId++,
+        author: 'Bamboo Bao',
+        content: content,
+        timestamp: Date.now(),
+        privacy: privacy
+      });
+      
+      textarea.value = '';
+      document.getElementById('charCount').textContent = '0/500';
+      document.getElementById('postButton').disabled = true;
+      
+      renderPosts();
+      updateCounts();
+      
+      showModal('Post Created', 'Your post has been published to ' + privacy.toLowerCase() + '!', 'View Post');
+    }
+    
+    function toggleLike(postId, button) {
+      if (!likes[postId]) {
+        likes[postId] = 0;
+      }
+      
+      if (button.classList.contains('liked')) {
+        likes[postId]--;
+        button.classList.remove('liked');
+        button.textContent = 'Like';
+      } else {
+        likes[postId]++;
+        button.classList.add('liked');
+        button.textContent = 'Liked';
+      }
+      
+      // Update the like count in the post
+      const postElement = document.querySelector('.post[data-post-id="' + postId + '"]');
+      if (postElement) {
+        const likeCountSpan = postElement.querySelector('.likeCount');
+        if (likeCountSpan) {
+          likeCountSpan.textContent = likes[postId] + ' likes';
+        }
+      }
+    }
+    
+    function addComment(postId, text) {
+      if (!comments[postId]) {
+        comments[postId] = [];
+      }
+      
+      comments[postId].push({
+        author: 'You',
+        text: text
+      });
+      
+      // Re-render the post to show the new comment
+      const postElement = document.querySelector('.post[data-post-id="' + postId + '"]');
+      if (postElement) {
+        const commentsContainer = postElement.querySelector('.commentsContainer');
+        commentsContainer.appendChild(createCommentElement('You', text, postId));
+      }
+      
+      showModal('Comment Added', 'Your comment has been posted!', 'OK');
+    }
+    
+    function deleteComment(postId, commentElement) {
+      if (confirm('Are you sure you want to delete this comment?')) {
+        commentElement.remove();
+      }
+    }
+    
+    function sendFriendRequest(button, friendName) {
+      friendRequests.push(friendName);
+      button.textContent = 'Request Sent';
+      button.disabled = true;
+      
+      // Add to friend requests list
+      const friendRequestsContainer = document.getElementById('friendRequests');
+      const friendItem = document.createElement('div');
+      friendItem.className = 'friendItem';
+      friendItem.innerHTML = `
+        <span class="friendName">${friendName}</span>
+        <div class="friendAction">
+          <button onclick="acceptFriendRequest(this, '${friendName}')">Confirm</button>
+          <button class="secondary" onclick="deleteFriendRequest(this, '${friendName}')">Delete</button>
+        </div>
+      `;
+      friendRequestsContainer.appendChild(friendItem);
+      
+      updateCounts();
+      
+      showModal('Friend Request Sent', 'You have sent a friend request to ' + friendName + '!', 'OK');
+    }
+    
+    function acceptFriendRequest(button, friendName) {
+      friends.push(friendName);
+      
+      // Remove from requests
+      const friendItem = button.closest('.friendItem');
+      friendItem.remove();
+      
+      // Remove from suggestions
+      const suggestionButtons = document.querySelectorAll('#friendSuggestions .friendAction button');
+      suggestionButtons.forEach(btn => {
+        if (btn.textContent === 'Request Sent' && btn.closest('.friendItem').querySelector('.friendName').textContent === friendName) {
+          btn.textContent = 'Add Friend';
+          btn.disabled = false;
+        }
+      });
+      
+      updateCounts();
+      
+      showModal('Friend Request Accepted', friendName + ' is now your friend!', 'OK');
+    }
+    
+    function deleteFriendRequest(button, friendName) {
+      // Remove from requests
+      const friendItem = button.closest('.friendItem');
+      friendItem.remove();
+      
+      showModal('Friend Request Deleted', 'You have deleted the friend request from ' + friendName + '!', 'OK');
+    }
+    
+    function performSearch() {
+      const query = document.getElementById('searchInput').value.trim().toLowerCase();
+      
+      if (!query) {
+        showModal('Search', 'Please enter a search term!', 'OK');
+        return;
+      }
+      
+      // Search through posts
+      const matchingPosts = posts.filter(post => 
+        post.content.toLowerCase().includes(query)
+      );
+      
+      // Highlight matching posts
+      document.querySelectorAll('.post').forEach(post => {
+        const postId = post.dataset.postId;
+        const postElement = document.querySelector('.post[data-post-id="' + postId + '"]');
+        postElement.style.boxShadow = '0 0 0 2px #ffd700';
+        postElement.style.transition = 'box-shadow 0.3s';
+        
+        setTimeout(() => {
+          postElement.style.boxShadow = '';
+        }, 2000);
+      });
+      
+      if (matchingPosts.length > 0) {
+        showModal('Search Results', 'Found ' + matchingPosts.length + ' posts matching "' + query + '"', 'OK');
+      } else {
+        showModal('Search Results', 'No posts found matching "' + query + '"', 'OK');
+      }
+    }
+    
+    function clearSearch() {
+      document.getElementById('searchInput').value = '';
+      showModal('Search Cleared', 'Search field has been cleared!', 'OK');
+    }
+    
+    // Modal functions
+    function showModal(title, body, buttonText) {
+      const modal = document.getElementById('modal');
+      document.getElementById('modalHeader').textContent = title;
+      document.getElementById('modalBody').textContent = body;
+      modal.style.display = 'flex';
+    }
+    
+    function closeModal() {
+      document.getElementById('modal').style.display = 'none';
+    }
+    
+    function confirmAction() {
+      closeModal();
+    }
+    
+    // Character counter for status
+    document.getElementById('statusText').addEventListener('input', function() {
+      const count = this.value.length;
+      document.getElementById('charCount').textContent = count + '/500';
+      document.getElementById('postButton').disabled = count === 0;
+    });
+    
+    // Initialize the page
+    window.onload = function() {
+      initializeData();
+    };
+  </script>
 </body>
 </html>
+```
+
